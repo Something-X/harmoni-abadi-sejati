@@ -1,0 +1,182 @@
+<!-- ============================================================
+     VISI & MISI  (versi baru)
+     CARA PAKAI: hapus blok lama dari "<!-- VISI & MISI -->" sampai
+     "</section>" tepat sebelum "<!-- KEGIATAN & YOUTUBE -->",
+     lalu tempel seluruh isi file ini di tempat yang sama.
+     Style dan script sudah ada di dalam blok ini.
+     ============================================================ -->
+
+<style>
+    /* ===== VISI & MISI ===== */
+    /* Elemen hanya disembunyikan jika JavaScript aktif (html.vm-js) */
+    html.vm-js .vm-reveal { opacity: 0; }
+    html.vm-js .vm-reveal.is-in { opacity: 1; animation: vm-rise .9s cubic-bezier(.22, 1, .36, 1) var(--d, 0s) backwards; }
+    @keyframes vm-rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+
+    /* Garis emas di puncak kartu, bergerak pelan */
+    .vm-topbar { background: linear-gradient(90deg, #C99C2B, #F5E2A0, #C99C2B, #F5E2A0, #C99C2B); background-size: 200% 100%; animation: vm-slide 6s linear infinite; }
+    @keyframes vm-slide { to { background-position: 100% 0; } }
+
+    /* Lingkaran dekoratif melayang pelan */
+    .vm-orb { animation: vm-float 10s ease-in-out infinite; }
+    @keyframes vm-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
+
+    /* Lencana "Visi" muncul membal */
+    html.vm-js .vm-pop { opacity: 0; transform: scale(.6); }
+    html.vm-js .vm-visi.is-in .vm-pop { opacity: 1; transform: none; transition: opacity .5s ease, transform .8s cubic-bezier(.34, 1.56, .64, 1); }
+
+    /* Kalimat visi: muncul kata demi kata */
+    html.vm-js .vm-word { display: inline-block; opacity: 0; transform: translateY(.45em); filter: blur(6px); }
+    html.vm-js .vm-visi.is-in .vm-word {
+        opacity: 1; transform: none; filter: blur(0);
+        transition: opacity .6s ease, transform .7s cubic-bezier(.22, 1, .36, 1), filter .6s ease;
+        transition-delay: calc(.3s + var(--i) * 70ms);
+    }
+
+    /* Sorotan frasa utama: blok emas menyapu dari kiri */
+    .vm-visi-text mark { background: none; color: inherit; padding: 0; }
+    .vm-visi-text .vm-hl {
+        color: #fff; padding: .02em .22em; border-radius: .28em;
+        background: linear-gradient(135deg, #F5E2A0, #DDB443) no-repeat left center / 0% 100%;
+        -webkit-box-decoration-break: clone; box-decoration-break: clone;
+    }
+    .vm-visi.is-in .vm-hl {
+        color: #14233F; background-size: 100% 100%;
+        transition: background-size .8s cubic-bezier(.22, 1, .36, 1) .7s, color .3s ease 1s;
+    }
+
+    /* Empat pilar: teks emas + garis bawah yang tergambar satu per satu */
+    .vm-visi-text .vm-ul {
+        color: #fff; padding-bottom: .06em;
+        background: linear-gradient(90deg, #EDCE6E, #DDB443) no-repeat left 100% / 0% .16em;
+    }
+    .vm-visi.is-in .vm-ul {
+        color: #F5E2A0; background-size: 100% .16em;
+        transition: background-size .7s ease calc(1.2s + var(--m, 0) * .25s), color .4s ease calc(1.2s + var(--m, 0) * .25s);
+    }
+
+    /* Kartu misi */
+    .vm-item { transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease; }
+    .vm-item:hover { transform: translateY(-5px); border-color: #DDB443; box-shadow: 0 22px 40px -22px rgba(107, 76, 16, .45); }
+    .vm-icon { transition: transform .4s cubic-bezier(.34, 1.56, .64, 1); }
+    .vm-item:hover .vm-icon { transform: rotate(-8deg) scale(1.1); }
+    .vm-item::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: linear-gradient(90deg, #C99C2B, #EDCE6E); }
+    html.vm-js .vm-item::after { transform: scaleX(0); transform-origin: left; }
+    html.vm-js .vm-item.is-in::after { transform: scaleX(1); transition: transform .9s cubic-bezier(.22, 1, .36, 1) calc(var(--d, 0s) + .5s); }
+
+    /* Penanda kata kunci misi */
+    .vm-mk {
+        background: linear-gradient(90deg, #EDCE6E, #F5E2A0) no-repeat left 90% / 100% 42%;
+        -webkit-box-decoration-break: clone; box-decoration-break: clone;
+    }
+    html.vm-js .vm-mk { background-size: 0% 42%; }
+    html.vm-js .vm-item.is-in .vm-mk { background-size: 100% 42%; transition: background-size .7s ease calc(var(--d, 0s) + .6s); }
+
+    @media (prefers-reduced-motion: reduce) {
+        #visimisi *, #visimisi *::before, #visimisi *::after { animation: none !important; transition: none !important; }
+    }
+</style>
+
+<!-- VISI & MISI -->
+<section id="visimisi" class="py-24 bg-gold-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="text-center max-w-3xl mx-auto mb-14">
+            <span class="kicker">Landasan &amp; Arah Gerak</span>
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-navy-900 mt-4 tracking-tight">Visi &amp; Misi Yayasan</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="relative overflow-hidden rounded-[2rem] bg-white border border-gold-200 card-shadow">
+            <div class="vm-topbar absolute inset-x-0 top-0 h-2 z-10"></div>
+
+            <!-- VISI -->
+            <div class="vm-visi vm-watch navy-gradient relative overflow-hidden px-6 pt-20 pb-16 sm:px-12 lg:px-24 lg:pt-24 lg:pb-24 text-center">
+                <div class="vm-orb absolute -top-28 -left-28 h-80 w-80 rounded-full border border-gold-300/20 pointer-events-none"></div>
+                <div class="vm-orb absolute -bottom-32 -right-24 h-96 w-96 rounded-full bg-white/5 pointer-events-none" style="animation-delay:-4s"></div>
+
+                <div class="relative">
+                    <span class="vm-pop inline-flex items-center gap-3 gold-gradient text-navy-900 text-xl font-extrabold px-7 py-3 rounded-full shadow-lg">
+                        <i class="fas fa-bullseye"></i> Visi
+                    </span>
+                    <p class="vm-visi-text mx-auto mt-10 max-w-4xl text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-[1.3] tracking-tight text-white">
+                        Menjadikan <span><mark class="vm-hl">katalisator peradaban</mark></span> yang unggul melalui penguatan aspek <span><mark class="vm-ul" style="--m:0">kemanusiaan</mark>,</span> <span><mark class="vm-ul" style="--m:1">kesehatan</mark>,</span> <span><mark class="vm-ul" style="--m:2">pendidikan</mark>,</span> dan <span><mark class="vm-ul" style="--m:3">kelestarian lingkungan</mark>.</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- MISI -->
+            <div class="px-6 py-16 sm:px-12 lg:px-20 lg:py-20 border-t-4 border-gold-400">
+                <div class="vm-watch vm-reveal text-center">
+                    <span class="inline-flex items-center gap-3 gold-gradient text-navy-900 text-xl font-extrabold px-7 py-3 rounded-full shadow-lg">
+                        <i class="fas fa-flag"></i> Misi
+                    </span>
+                    <p class="mt-5 text-2xl sm:text-3xl font-extrabold text-navy-900 tracking-tight">Empat langkah nyata yang kami jalankan</p>
+                </div>
+
+                <ul class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <li class="vm-item vm-watch vm-reveal relative overflow-hidden flex items-center gap-5 rounded-2xl bg-gold-50 border border-gold-200 p-6 sm:p-8" style="--d:0s">
+                        <span class="vm-icon h-16 w-16 shrink-0 rounded-2xl gold-gradient text-navy-900 flex items-center justify-center text-2xl shadow-md"><i class="fas fa-handshake-angle"></i></span>
+                        <h4 class="text-xl sm:text-2xl font-extrabold text-navy-900 leading-snug">Menyelenggarakan <span class="vm-mk">bantuan sosial</span></h4>
+                    </li>
+                    <li class="vm-item vm-watch vm-reveal relative overflow-hidden flex items-center gap-5 rounded-2xl bg-gold-50 border border-gold-200 p-6 sm:p-8" style="--d:.12s">
+                        <span class="vm-icon h-16 w-16 shrink-0 rounded-2xl gold-gradient text-navy-900 flex items-center justify-center text-2xl shadow-md"><i class="fas fa-book-medical"></i></span>
+                        <h4 class="text-xl sm:text-2xl font-extrabold text-navy-900 leading-snug">Memfasilitasi layanan <span class="vm-mk">kesehatan</span> &amp; <span class="vm-mk">pendidikan</span></h4>
+                    </li>
+                    <li class="vm-item vm-watch vm-reveal relative overflow-hidden flex items-center gap-5 rounded-2xl bg-gold-50 border border-gold-200 p-6 sm:p-8" style="--d:0s">
+                        <span class="vm-icon h-16 w-16 shrink-0 rounded-2xl gold-gradient text-navy-900 flex items-center justify-center text-2xl shadow-md"><i class="fas fa-seedling"></i></span>
+                        <h4 class="text-xl sm:text-2xl font-extrabold text-navy-900 leading-snug"><span class="vm-mk">Konservasi</span> lingkungan</h4>
+                    </li>
+                    <li class="vm-item vm-watch vm-reveal relative overflow-hidden flex items-center gap-5 rounded-2xl bg-gold-50 border border-gold-200 p-6 sm:p-8" style="--d:.12s">
+                        <span class="vm-icon h-16 w-16 shrink-0 rounded-2xl gold-gradient text-navy-900 flex items-center justify-center text-2xl shadow-md"><i class="fas fa-users"></i></span>
+                        <h4 class="text-xl sm:text-2xl font-extrabold text-navy-900 leading-snug"><span class="vm-mk">Pemberdayaan</span> potensi anggota</h4>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    (function () {
+        const section = document.getElementById('visimisi');
+        if (!section) return;
+        document.documentElement.classList.add('vm-js');
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Pecah kalimat visi menjadi kata-kata agar bisa muncul satu per satu
+        const text = section.querySelector('.vm-visi-text');
+        let idx = 0;
+        Array.from(text.childNodes).forEach(node => {
+            if (node.nodeType === 3) {
+                const frag = document.createDocumentFragment();
+                node.textContent.split(/(\s+)/).forEach(part => {
+                    if (!part) return;
+                    if (!part.trim()) { frag.appendChild(document.createTextNode(' ')); return; }
+                    const w = document.createElement('span');
+                    w.className = 'vm-word';
+                    w.style.setProperty('--i', idx++);
+                    w.textContent = part;
+                    frag.appendChild(w);
+                });
+                node.replaceWith(frag);
+            } else if (node.nodeType === 1) {
+                node.classList.add('vm-word');
+                node.style.setProperty('--i', idx++);
+            }
+        });
+
+        // Mulai animasi saat bagian ini masuk ke layar
+        const targets = section.querySelectorAll('.vm-watch');
+        if (reduce || !('IntersectionObserver' in window)) {
+            targets.forEach(el => el.classList.add('is-in'));
+            return;
+        }
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -6% 0px' });
+        targets.forEach(el => io.observe(el));
+    })();
+</script>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin | Yayasan Harmoni Abadi Sejati</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style type="text/tailwindcss">
+        @theme {
+    --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+    --color-gold-50: #FDF8E6; --color-gold-100: #FBF0C9; --color-gold-200: #F5E2A0; --color-gold-300: #EDCE6E;
+    --color-gold-400: #DDB443; --color-gold-500: #C99C2B; --color-gold-600: #A87F1E; --color-gold-700: #8A6417;
+    --color-navy-900: #14233F; --color-navy-800: #1E3357;
+    --color-ink: #2E2A22; --color-ink-soft: #6B6457;
+}
+</style>
+    <style>
+        .gold-gradient {
+            background: linear-gradient(135deg, #F5E2A0 0%, #DDB443 55%, #C99C2B 100%);
+        }
+
+        .navy-gradient {
+            background: linear-gradient(135deg, #2B4673 0%, #1E3357 55%, #14233F 100%);
+        }
+
+        .card-shadow {
+            box-shadow: 0 1px 2px rgba(139, 99, 19, .06), 0 18px 40px -22px rgba(107, 76, 16, .35);
+        }
+
+        .inp {
+            width: 100%;
+            background: #FDF8E6;
+            border: 1px solid #F5E2A0;
+            border-radius: .75rem;
+            padding: .7rem .9rem;
+            font-size: .875rem;
+            color: #2E2A22;
+            outline: none;
+            transition: .2s;
+        }
+
+        .inp:focus {
+            background: #fff;
+            border-color: #C99C2B;
+            box-shadow: 0 0 0 4px rgba(221, 180, 67, .2);
+        }
+    </style>
+</head>
+
+<body class="bg-gold-50 text-ink font-sans antialiased min-h-screen">
+
+    <!-- ===== LOGIN ===== -->
+    <main id="login" class="hidden">
+        <div class="min-h-screen flex items-center justify-center p-4">
+            <div class="w-full max-w-md bg-white rounded-3xl card-shadow border border-gold-200 p-8 sm:p-10">
+                <div class="text-center">
+                    <div
+                        class="mx-auto h-16 w-16 rounded-full bg-white ring-2 ring-gold-400 shadow-md flex items-center justify-center p-2 overflow-hidden">
+                        <img src="logos.png" alt="" class="h-full w-full object-contain">
+                    </div>
+                    <h1 class="mt-4 text-xl font-extrabold text-navy-900">Admin Yayasan Harmoni Abadi Sejati</h1>
+                    <p class="text-sm text-ink-soft mt-1">Masuk untuk mengelola website</p>
+                </div>
+                <form id="loginForm" class="mt-8 space-y-5">
+                    <label class="block"><span class="block text-xs font-bold text-navy-900 mb-1.5">Username</span>
+                        <input name="u" class="inp" autocomplete="username" required></label>
+                    <label class="block"><span class="block text-xs font-bold text-navy-900 mb-1.5">Password</span>
+                        <input name="p" type="password" class="inp" autocomplete="current-password" required></label>
+                    <p id="loginErr"
+                        class="hidden text-sm font-semibold text-red-700 bg-red-50 border border-red-200 rounded-xl px-4 py-2.5">
+                        Username atau password salah.</p>
+                    <button
+                        class="w-full gold-gradient text-navy-900 font-extrabold py-3.5 rounded-xl shadow-lg hover:brightness-105 transition text-sm"><i
+                            class="fas fa-right-to-bracket mr-1.5"></i> Masuk</button>
+                </form>
+                <a href="index.html"
+                    class="block text-center mt-6 text-xs font-semibold text-ink-soft hover:text-navy-900"><i
+                        class="fas fa-arrow-left mr-1"></i> Kembali ke website</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== DASHBOARD ===== -->
+    <div id="app" class="hidden">
+        <header class="navy-gradient text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+                <div class="flex items-center gap-3 min-w-0">
+                    <span
+                        class="h-9 w-9 rounded-xl gold-gradient text-navy-900 flex items-center justify-center shrink-0"><i
+                            class="fas fa-gauge-high"></i></span>
+                    <div class="min-w-0">
+                        <p class="font-extrabold text-sm truncate">Panel Admin</p>
+                        <p class="text-[11px] text-gold-200 truncate">Yayasan Harmoni Abadi Sejati</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 text-xs font-bold">
+                    <a href="index.html" class="px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition"><i
+                            class="fas fa-globe sm:mr-1.5"></i><span class="hidden sm:inline">Lihat Website</span></a>
+                    <button id="logout"
+                        class="px-3 py-2 rounded-lg gold-gradient text-navy-900 hover:brightness-105 transition"><i
+                            class="fas fa-right-from-bracket mr-1.5"></i>Keluar</button>
+                </div>
+            </div>
+        </header>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+            <nav id="tabs" class="flex gap-2 overflow-x-auto pb-2"></nav>
+            <section id="view" class="mt-6"></section>
+        </div>
+    </div>
+
+    <div id="toast"
+        class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-navy-900 text-white text-sm font-semibold px-5 py-3 rounded-xl shadow-lg">
+    </div>
+
+    <script>
+        (function () {
+            const KEY = 'yayasan_harmoni_db';      // sama dengan database website utama
+            const CK = 'yh_admin_cred';            // tempat password baru disimpan (dalam bentuk hash)
+
+            // Kredensial bawaan HANYA disimpan sebagai hash (SHA-256; elemen kedua = cadangan untuk browser tanpa crypto.subtle).
+            // Teks asli username/password tidak ada di kode ini. Setelah password diganti lewat menu Ganti Password, yang berlaku adalah password baru.
+            const U_H = ['s256:512d63f5dabde3d185055e0818adc563526c5579b86b5a86554b4fc66b2a9a89', 'c53:3bf79c5f3fa0d'];
+            const P_H = ['s256:2293f8635b33991650850716b0f93e8827a594bb41e5212d6e6393ddd239610d', 'c53:cdea4ce1c6ca6'];
+
+            // Data awal = isi website saat ini, supaya bisa dikelola dari admin
+            const DEF = {
+                videos: [
+                    { uid: 'v1', id: 'PnEIhHBZHAg', judul: 'LIVE KEGIATAN YAYASAN', kategori: 'Live Kegiatan Yayasan', link: 'https://www.youtube.com/watch?v=PnEIhHBZHAg', start: 1425 },
+                    { uid: 'v2', id: 'OXLuE6ZQj70', judul: 'PENANAMAN POHON MANGROVE', kategori: 'Dokumentasi Media', link: 'https://www.youtube.com/watch?v=OXLuE6ZQj70', start: 0 },
+                    { uid: 'v3', id: 'P_8WyO7_7PU', judul: 'AKSI SOSIAL KEMASYARAKATAN', kategori: 'Dokumentasi Media', link: 'https://www.youtube.com/watch?v=P_8WyO7_7PU', start: 0 }
+                ],
+                warta: [
+                    {
+                        uid: 'w1', judul: 'Pengurus Yayasan Harmoni Abadi Sejati Dilantik, Siap Jalankan Program Pendidikan dan Kesehatan', tanggal: '5 Februari 2026',
+                        ringkas: 'Yayasan resmi dideklarasikan, dan pengurus serta pengawasnya dilantik di Bima Restaurant, Surabaya, dengan fokus membantu pemerintah di bidang pendidikan dan kesehatan.',
+                        url: 'https://www.tvonenews.com/berita/nasional/413350-pengurus-yayasan-harmoni-abadi-sejati-dilantik-siap-jalankan-program-pendidikan-dan-kesehatan',
+                        gambar: 'https://thumbs.tvonenews.com/thumbnail/2026/02/05/6984ab0edccf2-yayasan-harmoni-abadi-sejati_1265_711.jpg',
+                        gambarCadangan: 'https://thumbs.tvonenews.com/thumbnail/2026/02/05/6984ab0edccf2-yayasan-harmoni-abadi-sejati_488_274.jpg'
+                    },
+                    {
+                        uid: 'w2', judul: 'Peduli Warga Tanpa Keluarga, 275 Kain Kafan Diserahkan ke Dinsos Surabaya', tanggal: '8 Agustus 2026',
+                        ringkas: 'Menjelang HUT ke-81 RI, yayasan menyerahkan 275 lembar kain kafan kepada Dinas Sosial Kota Surabaya untuk pemulasaraan jenazah warga binaan yang tidak memiliki keluarga.',
+                        url: 'https://www.tvonenews.com/daerah/jatim/458586-dinsos-surabaya-terima-275-kain-kafan-untuk-jenazah-warga-tanpa-keluarga',
+                        gambar: 'https://thumbs.tvonenews.com/thumbnail/2026/08/08/6a77197d29e60-275-kain-kafan-disalurkan-untuk-warga-kurang-mampu-di-surabaya_1265_711.jpg',
+                        gambarCadangan: 'https://thumbs.tvonenews.com/thumbnail/2026/08/08/6a77197d29e60-275-kain-kafan-disalurkan-untuk-warga-kurang-mampu-di-surabaya_488_274.jpg'
+                    }
+                ]
+            };
+
+            const $ = s => document.querySelector(s);
+            const esc = t => String(t == null ? '' : t).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+            const rp = n => 'Rp ' + new Intl.NumberFormat('id-ID').format(n || 0);
+            const tgl = s => { const d = new Date(s + 'T00:00:00'); return isNaN(d) ? s : d.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }); };
+            const today = () => new Date(Date.now() - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
+            const empty = m => `<p class="bg-white border border-dashed border-gold-300 rounded-2xl p-8 text-center text-sm text-ink-soft italic">${m}</p>`;
+            const delBtn = (k, id) => `<button data-del="${k}:${esc(id)}" aria-label="Hapus" class="shrink-0 h-9 w-9 rounded-lg text-ink-soft hover:bg-red-50 hover:text-red-700 transition"><i class="fas fa-trash"></i></button>`;
+
+            // Konfigurasi form + tampilan tiap menu (donasi tidak diinput dari admin, jadi tidak ada di sini)
+            const C = {
+                videos: {
+                    nama: 'Video & Media', fields: [
+                        { k: 'judul', l: 'Judul video', t: 'text', req: 1 },
+                        { k: 'kategori', l: 'Kategori', t: 'select', o: ['Live Kegiatan Yayasan', 'Dokumentasi Media', 'Berita Video Liputan Media'] },
+                        { k: 'link', l: 'Link YouTube', t: 'url', req: 1, ph: 'https://www.youtube.com/watch?v=...' },
+                        { k: 'start', l: 'Mulai dari detik ke- (opsional)', t: 'number' }
+                    ],
+                    item: r => `<img src="https://i.ytimg.com/vi/${esc(r.id)}/mqdefault.jpg" alt="" loading="lazy" class="h-16 w-28 sm:h-20 sm:w-36 rounded-xl object-cover bg-gold-100 shrink-0">
+                <div class="min-w-0 flex-1"><span class="inline-block text-[11px] font-bold bg-gold-100 text-gold-700 px-2.5 py-1 rounded-full">${esc(r.kategori)}</span>
+                <p class="font-bold text-navy-900 mt-1.5 leading-snug">${esc(r.judul)}</p>
+                <a href="${esc(r.link || 'https://youtu.be/' + r.id)}" target="_blank" rel="noopener" class="text-xs font-semibold text-gold-700 hover:underline">Buka di YouTube</a></div>`
+                },
+                warta: {
+                    nama: 'Artikel Kegiatan Internal', fields: [
+                        { k: 'judul', l: 'Judul artikel', t: 'text', req: 1 },
+                        { k: 'tanggal', l: 'Tanggal kegiatan', t: 'date', req: 1, def: today },
+                        { k: 'ringkas', l: 'Ringkasan', t: 'area', req: 1 },
+                        { k: 'url', l: 'Link artikel / berita', t: 'url', req: 1, ph: 'https://...' },
+                        { k: 'gambar', l: 'Link gambar sampul (opsional)', t: 'url', ph: 'https://...' }
+                    ],
+                    item: r => `<div class="min-w-0 flex-1"><p class="text-xs font-semibold text-gold-700"><i class="far fa-calendar mr-1"></i>${esc(r.tanggal)}</p>
+                <p class="font-bold text-navy-900 mt-1 leading-snug">${esc(r.judul)}</p>
+                <p class="text-sm text-ink-soft mt-1.5 line-clamp-2">${esc(r.ringkas)}</p>
+                <a href="${esc(r.url)}" target="_blank" rel="noopener" class="text-xs font-semibold text-gold-700 hover:underline">Buka artikel</a></div>`
+                }
+            };
+            const TABS = [['ringkasan', 'Ringkasan', 'fa-gauge-high'], ['videos', 'Video & Media', 'fa-circle-play'], ['warta', 'Artikel Internal', 'fa-newspaper'], ['pesan', 'Pesan Masuk', 'fa-envelope'], ['donasi', 'Donasi Masuk', 'fa-hand-holding-heart'], ['akun', 'Ganti Password', 'fa-key']];
+
+            let db, tab = 'ringkasan', tt;
+            let authed = false; // status login hanya di memori: refresh / tutup tab = otomatis keluar
+
+            function load() {
+                let d = {}; try { d = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { }
+                d.pesan = d.pesan || []; d.artikels = d.artikels || []; d.donasi = d.donasi || [];
+                d.videos = d.videos || DEF.videos.slice(); d.warta = d.warta || DEF.warta.slice();
+                return d;
+            }
+            const save = () => localStorage.setItem(KEY, JSON.stringify(db));
+            function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.remove('hidden'); clearTimeout(tt); tt = setTimeout(() => t.classList.add('hidden'), 2500); }
+
+            // ===== Hash & verifikasi kredensial =====
+            async function hash(t) {
+                if (window.crypto && crypto.subtle) {
+                    const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('yh:' + t));
+                    return 's256:' + Array.from(new Uint8Array(b)).map(x => x.toString(16).padStart(2, '0')).join('');
+                }
+                let h1 = 0xdeadbeef, h2 = 0x41c6ce57; // cadangan untuk browser tanpa crypto.subtle
+                for (const ch of 'yh:' + t) { const c = ch.charCodeAt(0); h1 = Math.imul(h1 ^ c, 2654435761); h2 = Math.imul(h2 ^ c, 1597334677); }
+                h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+                h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+                return 'c53:' + (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(16);
+            }
+            async function userOk(u) { return U_H.includes(await hash('usr:' + u)); }
+            async function passOk(p) {
+                let c = null; try { c = JSON.parse(localStorage.getItem(CK)); } catch (e) { }
+                const h = await hash(p);
+                return c && c.h ? h === c.h : P_H.includes(h);
+            }
+
+            // ===== Login / logout =====
+            function show() {
+                $('#login').classList.toggle('hidden', authed);
+                $('#app').classList.toggle('hidden', !authed);
+                if (authed) { db = load(); render(); }
+                else { db = null; $('#tabs').innerHTML = ''; $('#view').innerHTML = ''; } // kosongkan isi dashboard dari halaman
+            }
+            function logout() { authed = false; tab = 'ringkasan'; $('#loginForm').reset(); $('#loginErr').classList.add('hidden'); show(); }
+
+            $('#loginForm').addEventListener('submit', async e => {
+                e.preventDefault();
+                const f = e.target.elements;
+                const [okU, okP] = await Promise.all([userOk(f.u.value.trim()), passOk(f.p.value)]);
+                if (okU && okP) {
+                    authed = true; e.target.reset(); $('#loginErr').classList.add('hidden'); show();
+                } else { $('#loginErr').classList.remove('hidden'); f.p.value = ''; }
+            });
+            $('#logout').addEventListener('click', logout);
+
+            // Otomatis keluar saat admin pindah tab / aplikasi / kunci layar, atau halaman dipulihkan dari cache browser
+            document.addEventListener('visibilitychange', () => { if (document.hidden && authed) logout(); });
+            window.addEventListener('pageshow', e => { if (e.persisted && authed) logout(); });
+            window.addEventListener('pagehide', () => { authed = false; });
+
+            // ===== Tampilan =====
+            function render() {
+                $('#tabs').innerHTML = TABS.map(([k, l, i]) => `<button data-tab="${k}" class="shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-bold transition ${k === tab ? 'gold-gradient text-navy-900 shadow' : 'bg-white text-navy-900 border border-gold-200 hover:border-gold-400'}">
+            <i class="fas ${i}"></i>${esc(l)}${k !== 'ringkasan' && k !== 'akun' ? `<span class="text-[11px] font-extrabold bg-navy-900/10 rounded-full px-2 py-0.5">${db[k].length}</span>` : ''}</button>`).join('');
+                $('#view').innerHTML = tab === 'ringkasan' ? vSummary() : tab === 'pesan' ? vPesan() : tab === 'donasi' ? vDonasi() : tab === 'akun' ? vAkun() : vCrud(tab);
+            }
+
+            function vSummary() {
+                const total = db.donasi.reduce((s, r) => s + (+r.nominal || 0), 0);
+                const cards = [['videos', 'Video & Media', db.videos.length, 'fa-circle-play'], ['warta', 'Artikel Internal', db.warta.length, 'fa-newspaper'], ['pesan', 'Pesan Masuk', db.pesan.length, 'fa-envelope'], ['donasi', 'Total Donasi', rp(total), 'fa-hand-holding-heart']];
+                return `<div class="grid grid-cols-2 lg:grid-cols-4 gap-4">${cards.map(([k, l, v, i]) => `
+            <button data-tab="${k}" class="text-left bg-white rounded-2xl border border-gold-200 card-shadow p-5 hover:border-gold-400 transition">
+                <span class="h-11 w-11 rounded-xl gold-gradient text-navy-900 flex items-center justify-center"><i class="fas ${i}"></i></span>
+                <p class="mt-4 text-xl sm:text-2xl font-extrabold text-navy-900">${v}</p><p class="text-xs font-semibold text-ink-soft mt-1">${l}</p></button>`).join('')}</div>
+            <p class="mt-6 text-xs leading-relaxed text-ink-soft bg-white border border-gold-200 rounded-2xl p-4"><i class="fas fa-circle-info text-gold-600 mr-1.5"></i>
+            Data tersimpan di browser ini (localStorage). Agar perubahan tampil untuk semua pengunjung dan pesan dari pengunjung masuk ke sini, website perlu dihubungkan ke database online.</p>`;
+            }
+
+            function field(f) {
+                const lab = `<span class="block text-xs font-bold text-navy-900 mb-1.5">${esc(f.l)}</span>`, r = f.req ? 'required' : '';
+                const ctl = f.t === 'select' ? `<select name="${f.k}" class="inp">${f.o.map(o => `<option>${esc(o)}</option>`).join('')}</select>`
+                    : f.t === 'area' ? `<textarea name="${f.k}" rows="3" class="inp" ${r}></textarea>`
+                        : `<input type="${f.t}" name="${f.k}" class="inp" ${r} ${f.t === 'number' ? 'min="0"' : ''} value="${f.def ? f.def() : ''}" ${f.ph ? `placeholder="${esc(f.ph)}"` : ''}>`;
+                return `<label class="block">${lab}${ctl}</label>`;
+            }
+
+            function vCrud(k) {
+                const c = C[k], rows = db[k];
+                const form = `<form data-form="${k}" class="bg-white rounded-3xl border border-gold-200 card-shadow p-6 space-y-4 h-fit lg:sticky lg:top-6">
+            <h3 class="font-extrabold text-navy-900">Tambah ${esc(c.nama)}</h3>${c.fields.map(field).join('')}
+            <p data-err class="hidden text-xs font-semibold text-red-700"></p>
+            <button class="w-full gold-gradient text-navy-900 font-extrabold py-3 rounded-xl shadow-lg hover:brightness-105 transition text-sm"><i class="fas fa-plus mr-1.5"></i>Simpan</button></form>`;
+                const list = rows.length ? `<ul class="space-y-3">${rows.map(r => `<li class="flex items-start gap-4 bg-white rounded-2xl border border-gold-200 p-4">${c.item(r)}${delBtn(k, r.uid)}</li>`).join('')}</ul>` : empty('Belum ada data.');
+                return `<div class="grid grid-cols-1 lg:grid-cols-[22rem_1fr] gap-6 items-start">${form}<div>${list}</div></div>`;
+            }
+
+            // ===== Donasi: hanya tampilan (total + chart per metode), tanpa input dari admin =====
+            const PAL = ['#1E3357', '#C99C2B', '#6B8EC9', '#A87F1E', '#5E9C86', '#B5651D'];
+            const RE_WALLET = /\b(e[\s-]?wallet|gopay|go-pay|ovo|dana|shopee\s?pay|link\s?aja|isaku)\b/i;
+            const RE_BANK = /(bank|transfer|\b(bca|bni|bri|mandiri|cimb|permata|btn)\b)/i;
+            function metodeGrup(m) {
+                const s = String(m || '').trim();
+                if (!s) return 'Lainnya';
+                if (/qris/i.test(s)) return 'QRIS';
+                if (RE_WALLET.test(s)) return 'E-Wallet';
+                if (RE_BANK.test(s)) return 'Transfer Bank';
+                if (/tunai|cash/i.test(s)) return 'Tunai';
+                return s.charAt(0).toUpperCase() + s.slice(1);
+            }
+
+            function rekapDonasi() {
+                const g = { 'Transfer Bank': { n: 0, sum: 0 }, 'E-Wallet': { n: 0, sum: 0 } };
+                db.donasi.forEach(r => { const k = metodeGrup(r.metode), o = g[k] || (g[k] = { n: 0, sum: 0 }); o.n++; o.sum += +r.nominal || 0; });
+                const keys = Object.keys(g);
+                return { g, keys, count: db.donasi.length, total: keys.reduce((s, k) => s + g[k].sum, 0) };
+            }
+
+            function vDonasi() {
+                const { g, keys, count, total } = rekapDonasi();
+                const col = {}; keys.forEach((k, i) => col[k] = PAL[i % PAL.length]);
+                const pct = k => total ? g[k].sum / total * 100 : 0;
+                const fmt = p => p.toFixed(1).replace('.', ',') + '%';
+                const rows = [...keys].sort((a, b) => g[b].sum - g[a].sum);
+
+                let acc = 0;
+                const segs = rows.filter(k => g[k].sum > 0).map(k => {
+                    const p = pct(k), s = `<circle cx="21" cy="21" r="15.9155" fill="none" stroke="${col[k]}" stroke-width="6" stroke-dasharray="${p} ${100 - p}" stroke-dashoffset="${25 - acc}"><title>${esc(k)}: ${rp(g[k].sum)}</title></circle>`;
+                    acc += p; return s;
+                }).join('');
+                const donut = `<svg viewBox="0 0 42 42" class="w-44 h-44 shrink-0" role="img" aria-label="Grafik donasi berdasarkan metode">
+            <circle cx="21" cy="21" r="15.9155" fill="none" stroke="#F5E2A0" stroke-width="6"/>${segs}
+            <text x="21" y="21.5" text-anchor="middle" font-size="5.5" font-weight="800" fill="#14233F">${count}</text>
+            <text x="21" y="26.5" text-anchor="middle" font-size="2.6" fill="#6B6457">donasi</text></svg>`;
+                const bars = rows.map(k => `<li><div class="flex items-center justify-between gap-3 text-sm">
+                <span class="flex items-center gap-2 font-bold text-navy-900"><span class="h-3 w-3 rounded-full" style="background:${col[k]}"></span>${esc(k)}</span>
+                <span class="font-extrabold text-navy-900">${rp(g[k].sum)}</span></div>
+                <div class="mt-1.5 h-2.5 rounded-full bg-gold-100 overflow-hidden"><div class="h-full rounded-full" style="width:${pct(k)}%;background:${col[k]}"></div></div>
+                <p class="text-xs text-ink-soft mt-1">${g[k].n} donasi &middot; ${fmt(pct(k))} dari total</p></li>`).join('');
+
+                return `<div class="max-w-4xl">
+            <div class="grid grid-cols-2 gap-4">
+                <div class="navy-gradient text-white rounded-2xl p-5"><p class="text-xs text-gold-200 font-semibold">Total donasi</p><p class="text-xl sm:text-2xl font-extrabold mt-1">${rp(total)}</p></div>
+                <div class="bg-white border border-gold-200 rounded-2xl p-5 flex flex-col justify-between gap-2"><div><p class="text-xs text-ink-soft font-semibold">Jumlah donasi</p><p class="text-xl sm:text-2xl font-extrabold text-navy-900 mt-1">${count}</p></div>
+                    <button data-csv class="self-start text-xs font-bold gold-gradient text-navy-900 px-3 py-2 rounded-lg hover:brightness-105 transition"><i class="fas fa-download mr-1.5"></i>Unduh Rekap CSV</button></div>
+            </div>
+            <div class="mt-4 bg-white rounded-3xl border border-gold-200 card-shadow p-6">
+                <h3 class="font-extrabold text-navy-900">Donasi berdasarkan metode</h3>
+                ${count ? `<div class="mt-5 flex flex-col sm:flex-row items-center gap-8"><div class="mx-auto sm:mx-0">${donut}</div><ul class="flex-1 w-full space-y-5">${bars}</ul></div>` : `<div class="mt-4">${empty('Belum ada donasi yang tercatat.')}</div>`}
+            </div>
+            <p class="mt-4 text-xs leading-relaxed text-ink-soft"><i class="fas fa-circle-info text-gold-600 mr-1.5"></i>Halaman ini hanya menampilkan rekap. Data donasi tidak diinput dari panel admin.</p></div>`;
+            }
+
+            function vPesan() {
+                if (!db.pesan.length) return empty('Belum ada pesan masuk dari pengunjung.');
+                return `<ul class="space-y-3 max-w-4xl">${[...db.pesan].reverse().map(p => {
+                    const c = String(p.email || '').trim();
+                    const href = c.includes('@') ? 'mailto:' + esc(c) : 'https://wa.me/' + c.replace(/\D/g, '').replace(/^0/, '62');
+                    return `<li class="bg-white rounded-2xl border border-gold-200 p-5"><div class="flex items-start justify-between gap-4">
+                <div class="min-w-0"><p class="font-bold text-navy-900">${esc(p.nama)}</p><p class="text-xs text-ink-soft mt-0.5 break-all">${esc(c)} &middot; ${esc(p.tanggal)}</p></div>
+                ${delBtn('pesan', p.id)}</div><p class="text-sm mt-3 leading-relaxed whitespace-pre-line">${esc(p.pesan)}</p>
+                <a href="${href}" target="_blank" rel="noopener" class="inline-block mt-3 text-xs font-bold text-gold-700 hover:underline"><i class="fas fa-reply mr-1.5"></i>Balas</a></li>`;
+                }).join('')}</ul>`;
+            }
+
+            function vAkun() {
+                const inp = (n, l, ac) => `<label class="block"><span class="block text-xs font-bold text-navy-900 mb-1.5">${l}</span><input type="password" name="${n}" class="inp" autocomplete="${ac}" required></label>`;
+                return `<form data-form="akun" class="max-w-md bg-white rounded-3xl border border-gold-200 card-shadow p-6 space-y-4">
+            <h3 class="font-extrabold text-navy-900"><i class="fas fa-key text-gold-600 mr-2"></i>Ganti Password</h3>
+            ${inp('lama', 'Password lama', 'current-password')}${inp('baru', 'Password baru (minimal 6 karakter)', 'new-password')}${inp('ulang', 'Ulangi password baru', 'new-password')}
+            <p data-err class="hidden text-xs font-semibold text-red-700"></p>
+            <button class="w-full gold-gradient text-navy-900 font-extrabold py-3 rounded-xl shadow-lg hover:brightness-105 transition text-sm"><i class="fas fa-floppy-disk mr-1.5"></i>Simpan Password</button>
+            <p class="text-xs text-ink-soft leading-relaxed">Password baru tersimpan di browser ini.</p></form>`;
+            }
+
+            async function gantiPass(f) {
+                const v = n => f.elements[n].value, err = f.querySelector('[data-err]');
+                const bad = m => { err.textContent = m; err.classList.remove('hidden'); };
+                if (!(await passOk(v('lama')))) return bad('Password lama salah.');
+                if (v('baru').length < 6) return bad('Password baru minimal 6 karakter.');
+                if (v('baru') !== v('ulang')) return bad('Konfirmasi password tidak sama.');
+                if (v('baru') === v('lama')) return bad('Password baru harus berbeda dari yang lama.');
+                localStorage.setItem(CK, JSON.stringify({ h: await hash(v('baru')) }));
+                f.reset(); err.classList.add('hidden'); toast('Password berhasil diganti.');
+            }
+
+            function csv() {
+                // Awalan ' mencegah sel diawali = + - @ dijalankan sebagai rumus di Excel (data donasi berasal dari pengunjung)
+                const q = v => { let s = String(v == null ? '' : v); if (/^[=+\-@\t\r]/.test(s)) s = "'" + s; return '"' + s.replace(/"/g, '""') + '"'; };
+                const row = c => c.map(q).join(',');
+                const { g, keys, count, total } = rekapDonasi();
+                const persen = n => (total ? n / total * 100 : 0).toFixed(1).replace('.', ',') + '%';
+                const lines = [
+                    row(['Rekap Donasi per Metode']),
+                    row(['Metode', 'Jumlah Donasi', 'Total Nominal', 'Persentase']),
+                    ...[...keys].sort((a, b) => g[b].sum - g[a].sum).map(k => row([k, g[k].n, g[k].sum, persen(g[k].sum)])),
+                    row(['TOTAL', count, total, persen(total)]),
+                    '',
+                    row(['Rincian Donasi']),
+                    row(['Tanggal', 'Nama', 'Metode', 'Kelompok Metode', 'Nominal', 'Catatan']),
+                    ...db.donasi.map(r => row([r.tanggal, r.nama, r.metode, metodeGrup(r.metode), r.nominal, r.catatan]))
+                ];
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(new Blob(['\ufeff' + lines.join('\n')], { type: 'text/csv' }));
+                a.download = 'donasi-yayasan.csv'; a.click();
+                setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+            }
+
+            // ===== Aksi =====
+            document.addEventListener('click', e => {
+                const t = e.target.closest('[data-tab]');
+                if (t) { tab = t.dataset.tab; render(); window.scrollTo({ top: 0 }); return; }
+                const d = e.target.closest('[data-del]');
+                if (d) {
+                    const s = d.dataset.del, i = s.indexOf(':'), k = s.slice(0, i), id = s.slice(i + 1);
+                    if (confirm('Hapus data ini?')) { db[k] = db[k].filter(r => String(r.uid || r.id) !== id); save(); render(); toast('Data dihapus.'); }
+                    return;
+                }
+                if (e.target.closest('[data-csv]')) csv();
+            });
+
+            $('#view').addEventListener('submit', e => {
+                const f = e.target, k = f.dataset.form;
+                if (!k) return;
+                e.preventDefault();
+                if (k === 'akun') return gantiPass(f);
+                const err = f.querySelector('[data-err]'), rec = { uid: String(Date.now()) };
+                const bad = m => { err.textContent = m; err.classList.remove('hidden'); };
+                for (const fl of C[k].fields) {
+                    const v = f.elements[fl.k].value.trim().replace(/[<>]/g, '');
+                    if (fl.t === 'url' && v && !/^https?:\/\//i.test(v)) return bad('Link harus diawali http:// atau https://');
+                    rec[fl.k] = v;
+                }
+                if (k === 'videos') {
+                    const m = rec.link.match(/(?:v=|youtu\.be\/|\/live\/|\/embed\/|\/shorts\/)([\w-]{11})/);
+                    if (!m) return bad('Link YouTube tidak dikenali.');
+                    const t = rec.link.match(/[?&]t=(\d+)/);
+                    rec.id = m[1]; rec.start = +rec.start || (t ? +t[1] : 0);
+                }
+                if (k === 'warta') { rec.tanggal = tgl(rec.tanggal); rec.gambarCadangan = ''; }
+                db[k].unshift(rec); save(); render(); toast('Berhasil disimpan.');
+            });
+
+            show();
+        })();
+    </script>
+</body>
+
+</html>

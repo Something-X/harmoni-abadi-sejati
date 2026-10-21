@@ -1,0 +1,2663 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YAYASAN HARMONI ABADI SEJATI | Surabaya</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS v4 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style type="text/tailwindcss">
+        @theme {
+        --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+        --font-serif: "Lora", Georgia, serif;
+
+        --color-gold-50: #FDF8E6;
+        --color-gold-100: #FBF0C9;
+        --color-gold-200: #F5E2A0;
+        --color-gold-300: #EDCE6E;
+        --color-gold-400: #DDB443;
+        --color-gold-500: #C99C2B;
+        --color-gold-600: #A87F1E;
+        --color-gold-700: #8A6417;
+        --color-gold-800: #6B4C10;
+
+        --color-navy-900: #14233F;
+        --color-navy-800: #1E3357;
+        --color-navy-700: #2B4673;
+        --color-navy-600: #3E5F93;
+        --color-navy-300: #A9B9D6;
+        --color-navy-100: #E4EAF4;
+        --color-navy-50: #F5F7FB;
+
+        --color-ink: #2E2A22;
+        --color-ink-soft: #6B6457;
+    }
+
+    @layer base {
+        *, ::after, ::before { border-color: var(--color-gold-200); }
+    }
+</style>
+
+    <style>
+        ::selection {
+            background: #f3c82c;
+            color: #14233F;
+        }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, #F5E2A0 0%, #DDB443 55%, #C99C2B 100%);
+        }
+
+        .gold-panel {
+            background: linear-gradient(135deg, #FBF0C9 0%, #EDCE6E 45%, #D1A030 100%);
+        }
+
+        .gold-bar {
+            background: linear-gradient(90deg, #C99C2B 0%, #EDCE6E 50%, #C99C2B 100%);
+        }
+
+        .navy-gradient {
+            background: linear-gradient(135deg, #2B4673 0%, #1E3357 55%, #14233F 100%);
+        }
+
+        .card-shadow {
+            box-shadow: 0 1px 2px rgba(139, 99, 19, 0.06), 0 18px 40px -22px rgba(107, 76, 16, .35);
+        }
+
+        .kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: .6rem;
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: #8A6417;
+        }
+
+        .kicker::before {
+            content: "";
+            width: 1.75rem;
+            height: 2px;
+            border-radius: 9999px;
+            background: #DDB443;
+        }
+
+        .divider {
+            width: 4.5rem;
+            height: 4px;
+            margin: 1rem auto 0;
+            border-radius: 9999px;
+            background: linear-gradient(90deg, #C99C2B, #EDCE6E 50%, #14233F);
+        }
+
+        /* ===== HERO ===== */
+        .hero-base {
+            background: linear-gradient(160deg, #F5E2A0 10%, #DDB443 55%, #B8891C 100%);
+        }
+
+        .hero-slide {
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .hero-slide.is-active {
+            opacity: 1;
+        }
+
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(245, 226, 160, .55) 0%, rgba(221, 180, 67, .40) 55%, rgba(168, 127, 30, .50) 100%);
+            opacity: 1;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        #home.hero-depth .hero-overlay {
+            opacity: 0;
+        }
+
+        .hero-cutout {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        #home.hero-depth .hero-cutout {
+            opacity: 1;
+        }
+
+        .hero-title {
+            text-shadow: 0 2px 18px rgba(20, 35, 63, .45);
+            transform: scale(1);
+            transition: transform 1.4s cubic-bezier(.22, 1, .36, 1), text-shadow 1.2s ease;
+            will-change: transform;
+        }
+
+        #home.hero-depth .hero-title {
+            transform: scale(1.04);
+            text-shadow: 0 6px 40px rgba(0, 0, 0, .35);
+        }
+
+        .hero-text-soft {
+            text-shadow: 0 1px 12px rgba(20, 35, 63, .5);
+        }
+
+        .hero-dot {
+            position: relative;
+            height: 0.625rem;
+            width: 0.625rem;
+            border-radius: 9999px;
+            background: rgba(20, 35, 63, .35);
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+
+        .hero-dot::before {
+            content: "";
+            position: absolute;
+            inset: -0.5rem -0.25rem;
+        }
+
+        .hero-dot[aria-current="true"] {
+            width: 2rem;
+            background: #14233F;
+        }
+
+        .hero-dot:focus-visible,
+        .hero-arrow:focus-visible {
+            outline: 2px solid #14233F;
+            outline-offset: 3px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .hero-overlay,
+            .hero-cutout,
+            .hero-title,
+            .hero-slide,
+            .hero-dot {
+                transition: none;
+            }
+        }
+
+        /* ===== WARTA (CAROUSEL) ===== */
+        .warta-bg {
+            background:
+                radial-gradient(60rem 28rem at 10% 0%, rgba(221, 180, 67, .16), transparent 65%),
+                radial-gradient(50rem 28rem at 100% 100%, rgba(221, 180, 67, .12), transparent 65%),
+                #FFFFFF;
+        }
+
+        .warta-track {
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+
+        .warta-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .warta-slide {
+            scroll-snap-align: center;
+            scroll-snap-stop: always;
+        }
+
+        .warta-ring {
+            background: linear-gradient(135deg, #F5E2A0 0%, #C99C2B 50%, #F5E2A0 100%);
+            box-shadow: 0 25px 50px -20px rgba(138, 100, 23, .45);
+        }
+
+        .warta-panel {
+            background: linear-gradient(135deg, #FFFFFF 0%, #FDF8E6 100%);
+        }
+
+        .warta-shade {
+            background:
+                linear-gradient(135deg, rgba(221, 180, 67, .22), transparent 45%),
+                linear-gradient(to bottom, transparent 55%, #FFFFFF 100%);
+        }
+
+        @media (min-width: 768px) {
+            .warta-shade {
+                background:
+                    linear-gradient(135deg, rgba(221, 180, 67, .22), transparent 45%),
+                    linear-gradient(to right, transparent 55%, #FFFFFF 100%);
+            }
+        }
+
+        .warta-track:focus-visible,
+        .warta-btn:focus-visible,
+        .warta-dot:focus-visible {
+            outline: 2px solid #14233F;
+            outline-offset: 3px;
+        }
+
+        .warta-dot {
+            position: relative;
+            height: 0.625rem;
+            width: 0.625rem;
+            border-radius: 9999px;
+            background: #EBD79A;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+
+        .warta-dot::before {
+            content: "";
+            position: absolute;
+            inset: -0.5rem -0.25rem;
+        }
+
+        .warta-dot[aria-current="true"] {
+            width: 2.5rem;
+            background: linear-gradient(90deg, #DDB443, #A87F1E);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .warta-dot {
+                transition: none;
+            }
+        }
+
+        /* ===== VIDEO CAROUSEL ===== */
+        .video-track {
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+
+        .video-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .video-slide {
+            scroll-snap-align: center;
+            scroll-snap-stop: always;
+        }
+
+        .video-frame {
+            width: min(100%, calc(80vh * 16 / 9));
+            margin-inline: auto;
+        }
+
+        .video-dot {
+            position: relative;
+            height: 0.625rem;
+            width: 0.625rem;
+            border-radius: 9999px;
+            background: #EBD79A;
+            transition: width .3s ease, background-color .3s ease;
+        }
+
+        .video-dot::before {
+            content: "";
+            position: absolute;
+            inset: -0.5rem -0.25rem;
+        }
+
+        .video-dot[aria-current="true"] {
+            width: 2.5rem;
+            background: linear-gradient(90deg, #DDB443, #A87F1E);
+        }
+
+        .video-track:focus-visible,
+        .video-btn:focus-visible,
+        .video-dot:focus-visible {
+            outline: 2px solid #14233F;
+            outline-offset: 3px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .video-dot {
+                transition: none;
+            }
+        }
+
+        /* Panggung foto 1 + cutout */
+        #home {
+            container-type: size;
+        }
+
+        .hero-stage {
+            --ratio: 1.9;
+            /* GANTI: lebar foto ÷ tinggi foto */
+            --w: max(100cqw, calc(100cqh * var(--ratio)));
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: var(--w);
+            height: max(100cqh, calc(100cqw / var(--ratio)));
+            margin-left: calc(var(--w) / -2);
+        }
+
+        /* ===== KRITIK & SARAN ===== */
+        .ks-card {
+            transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease;
+        }
+
+        .ks-opt:hover .ks-card {
+            border-color: #DDB443;
+        }
+
+        .ks-opt input:checked+.ks-card {
+            border-color: #C99C2B;
+            background: #FFFFFF;
+            box-shadow: 0 0 0 4px rgba(221, 180, 67, .2);
+        }
+
+        .ks-opt input:focus-visible+.ks-card {
+            outline: 2px solid #14233F;
+            outline-offset: 3px;
+        }
+
+        .ks-tick {
+            opacity: 0;
+            transform: scale(.6);
+            transition: opacity .2s ease, transform .3s cubic-bezier(.34, 1.56, .64, 1);
+        }
+
+        .ks-opt input:checked+.ks-card .ks-tick {
+            opacity: 1;
+            transform: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .ks-card,
+            .ks-tick {
+                transition: none;
+            }
+        }
+
+        /* ===== DONASI & LOMPAT KE BAGIAN ===== */
+        html {
+            scroll-padding-top: 5rem;
+        }
+
+        @keyframes secFlash {
+
+            0%,
+            100% {
+                box-shadow: none
+            }
+
+            30% {
+                box-shadow: inset 0 0 0 6px rgba(221, 180, 67, .6)
+            }
+        }
+
+        .sec-flash {
+            animation: secFlash 1.6s ease 2;
+        }
+
+        .fld {
+            width: 100%;
+            background: #FDF8E6;
+            border: 1px solid #F5E2A0;
+            border-radius: .75rem;
+            padding: .75rem 1rem;
+            font-size: .875rem;
+            color: #2E2A22;
+            outline: none;
+            transition: .2s;
+        }
+
+        .fld:focus {
+            background: #fff;
+            border-color: #C99C2B;
+            box-shadow: 0 0 0 4px rgba(221, 180, 67, .2);
+        }
+
+        /* ===== VISI & MISI ===== */
+        html.vm-js .vm-reveal {
+            opacity: 0;
+        }
+
+        html.vm-js .vm-reveal.is-in {
+            opacity: 1;
+            animation: vm-rise .9s cubic-bezier(.22, 1, .36, 1) var(--d, 0s) backwards;
+        }
+
+        @keyframes vm-rise {
+            from {
+                opacity: 0;
+                transform: translateY(28px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .vm-topbar {
+            background: linear-gradient(90deg, #C99C2B, #F5E2A0, #C99C2B, #F5E2A0, #C99C2B);
+            background-size: 200% 100%;
+            animation: vm-slide 6s linear infinite;
+        }
+
+        @keyframes vm-slide {
+            to {
+                background-position: 100% 0;
+            }
+        }
+
+        .vm-orb {
+            animation: vm-float 10s ease-in-out infinite;
+        }
+
+        @keyframes vm-float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-18px);
+            }
+        }
+
+        html.vm-js .vm-pop {
+            opacity: 0;
+            transform: scale(.6);
+        }
+
+        html.vm-js .vm-visi.is-in .vm-pop {
+            opacity: 1;
+            transform: none;
+            transition: opacity .5s ease, transform .8s cubic-bezier(.34, 1.56, .64, 1);
+        }
+
+        html.vm-js .vm-word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(.45em);
+            filter: blur(6px);
+        }
+
+        html.vm-js .vm-visi.is-in .vm-word {
+            opacity: 1;
+            transform: none;
+            filter: blur(0);
+            transition: opacity .6s ease, transform .7s cubic-bezier(.22, 1, .36, 1), filter .6s ease;
+            transition-delay: calc(.3s + var(--i) * 70ms);
+        }
+
+        .vm-visi-text mark {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        .vm-visi-text .vm-hl {
+            color: #fff;
+            padding: .02em .22em;
+            border-radius: .28em;
+            background: linear-gradient(135deg, #F5E2A0, #DDB443) no-repeat left center / 0% 100%;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+        }
+
+        .vm-visi.is-in .vm-hl {
+            color: #14233F;
+            background-size: 100% 100%;
+            transition: background-size .8s cubic-bezier(.22, 1, .36, 1) .7s, color .3s ease 1s;
+        }
+
+        .vm-visi-text .vm-ul {
+            color: #fff;
+            padding-bottom: .06em;
+            background: linear-gradient(90deg, #EDCE6E, #DDB443) no-repeat left 100% / 0% .16em;
+        }
+
+        .vm-visi.is-in .vm-ul {
+            color: #F5E2A0;
+            background-size: 100% .16em;
+            transition: background-size .7s ease calc(1.2s + var(--m, 0) * .25s), color .4s ease calc(1.2s + var(--m, 0) * .25s);
+        }
+
+        .vm-item {
+            transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+        }
+
+        .vm-item:hover {
+            transform: translateY(-5px);
+            border-color: #DDB443;
+            box-shadow: 0 22px 40px -22px rgba(107, 76, 16, .45);
+        }
+
+        .vm-icon {
+            transition: transform .4s cubic-bezier(.34, 1.56, .64, 1);
+        }
+
+        .vm-item:hover .vm-icon {
+            transform: rotate(-8deg) scale(1.1);
+        }
+
+        .vm-item::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #C99C2B, #EDCE6E);
+        }
+
+        html.vm-js .vm-item::after {
+            transform: scaleX(0);
+            transform-origin: left;
+        }
+
+        html.vm-js .vm-item.is-in::after {
+            transform: scaleX(1);
+            transition: transform .9s cubic-bezier(.22, 1, .36, 1) calc(var(--d, 0s) + .5s);
+        }
+
+        .vm-mk {
+            background: linear-gradient(90deg, #EDCE6E, #F5E2A0) no-repeat left 90% / 100% 42%;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+        }
+
+        html.vm-js .vm-mk {
+            background-size: 0% 42%;
+        }
+
+        html.vm-js .vm-item.is-in .vm-mk {
+            background-size: 100% 42%;
+            transition: background-size .7s ease calc(var(--d, 0s) + .6s);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            #visimisi *,
+            #visimisi *::before,
+            #visimisi *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+
+    <script>
+        // Ambil data dari localStorage (dipakai carousel video & warta)
+        function yhData(k, cadangan) {
+            try {
+                const d = JSON.parse(localStorage.getItem('yayasan_harmoni_db')) || {};
+                if (Array.isArray(d[k]) && d[k].length) return d[k];
+            } catch (e) { }
+            return cadangan;
+        }
+        window.addEventListener('storage', function (e) {
+            if (e.key !== 'yayasan_harmoni_db') return;
+            try {
+                const a = JSON.parse(e.oldValue) || {}, b = JSON.parse(e.newValue) || {};
+                if (JSON.stringify([a.videos, a.warta]) === JSON.stringify([b.videos, b.warta])) return;
+            } catch (err) { }
+            location.reload();
+        });
+    </script>
+</head>
+
+<body class="bg-white text-ink font-sans antialiased">
+
+    <!-- TOPBAR -->
+    <div class="gold-bar text-navy-900 text-xs py-2.5 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-1 font-medium">
+                <span><i class="fas fa-map-marker-alt mr-1.5"></i> Vila Taman Telaga 2 blok TJ 11 no 1 Citraland,
+                    Surabaya</span>
+                <span><i class="fas fa-phone mr-1.5"></i> +62 813-5767-0968</span>
+            </div>
+            <div>
+                <a href="admin/admin.html" target="_blank" rel="noopener noreferrer"
+                    class="text-navy-900 font-bold hover:underline"><i class="fas fa-lock mr-1.5"></i> Admin
+                    Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN DASHBOARD (hidden by default) -->
+    <div id="adminPage" class="hidden">
+        <div class="max-w-4xl mx-auto px-4 py-12">
+            <div class="bg-white rounded-3xl card-shadow p-8 border border-gold-200">
+                <div class="flex flex-wrap gap-4 justify-between items-center mb-6 border-b border-gold-200 pb-4">
+                    <div>
+                        <h2 class="text-2xl font-extrabold text-navy-900">Panel Admin Yayasan</h2>
+                        <p class="text-xs text-ink-soft">Kelola Pesan Masuk &amp; Data Website</p>
+                    </div>
+                    <a href="#" onclick="showHome(); return false;"
+                        class="gold-gradient text-navy-900 px-4 py-2.5 rounded-xl text-xs font-bold hover:brightness-105 transition shadow">Kembali
+                        ke Website</a>
+                </div>
+
+                <h3 class="font-bold text-navy-900 text-lg mb-1"><i class="fas fa-envelope text-gold-600 mr-2"></i>
+                    Kritik &amp; Saran dari Pengunjung</h3>
+                <p id="adminSummary" class="text-xs text-ink-soft mb-4"></p>
+                <div id="adminMessages" class="space-y-4">
+                    <p class="text-ink-soft text-sm italic">Belum ada pesan masuk dari pengunjung.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HALAMAN UTAMA FRONT-END -->
+    <div id="homePage">
+
+        <!-- NAVBAR -->
+        <header class="sticky top-0 z-50 bg-white/95 backdrop-blur shadow-sm border-b border-gold-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="h-12 w-12 rounded-full bg-white ring-2 ring-gold-400 shadow-md flex items-center justify-center overflow-hidden p-1.5">
+                        <img src="img/logos.png" alt="" class="h-full w-full object-contain">
+                    </div>
+                    <div>
+                        <span class="block font-extrabold text-navy-900 tracking-wide text-xs sm:text-sm">YAYASAN
+                            HARMONI ABADI SEJATI</span>
+                        <span class="block text-[11px] text-gold-700 font-semibold tracking-[0.2em]">SURABAYA, JAWA
+                            TIMUR</span>
+                    </div>
+                </div>
+                <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-navy-900">
+                    <a href="#home" class="hover:text-gold-700 transition">Home</a>
+                    <a href="#tentang" class="hover:text-gold-700 transition">Tentang Kami</a>
+                    <a href="#visimisi" class="hover:text-gold-700 transition">Visi-Misi</a>
+                    <a href="#kegiatan" class="hover:text-gold-700 transition">Kegiatan &amp; Media</a>
+                    <a href="#artikel" class="hover:text-gold-700 transition">Artikel</a>
+                    <a href="#donasi" class="hover:text-gold-700 transition">Donasi</a>
+                    <a href="#kontak"
+                        class="gold-gradient text-navy-900 px-5 py-2.5 rounded-full shadow-sm hover:brightness-105 transition">Kontak</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- HERO SECTION (CAROUSEL) -->
+        <section id="home"
+            class="hero-base relative h-[88vh] min-h-[600px] flex items-center justify-center overflow-hidden"
+            aria-roledescription="carousel" aria-label="Galeri Yayasan Harmoni Abadi Sejati">
+
+            <div class="hero-stage">
+                <img src="img/img.jpg" alt="" class="hero-slide is-active absolute inset-0 w-full h-full z-0">
+                <img src="img/img-cutout.png" alt="" aria-hidden="true"
+                    class="hero-cutout absolute inset-0 w-full h-full z-30">
+            </div>
+
+            <img src="img/img2.jpeg" alt=""
+                class="hero-slide absolute inset-0 w-full h-full object-cover object-top z-0">
+            <img src="img/img3.jpeg" alt=""
+                class="hero-slide absolute inset-0 w-full h-full object-cover object-top z-0">
+            <img src="img/img4.jpeg" alt=""
+                class="hero-slide absolute inset-0 w-full h-full object-cover object-top z-0">
+
+            <div class="hero-overlay absolute inset-0 z-10 pointer-events-none"></div>
+
+            <div class="relative max-w-5xl mx-auto text-center px-4">
+                <h1 class="hero-title relative z-20 text-white">
+                    <span
+                        class="block pl-[0.35em] text-xl sm:text-5xl font-extrabold uppercase tracking-[0.35em]">YAYASAN</span>
+                    <span
+                        class="block mt-1 text-4xl sm:text-8xl lg:text-9xl font-extrabold uppercase leading-[1.05] tracking-tight">HARMONI
+                        ABADI SEJATI</span>
+                </h1>
+
+                <div class="relative z-40">
+                    <div class="mx-auto mt-7 h-[3px] w-16 rounded-full gold-bar"></div>
+                    <p
+                        class="hero-text-soft mt-7 font-serif italic text-base sm:text-xl text-white mx-auto leading-relaxed">
+                        Wadah Kepedulian, Jembatan Pengabdian, Sekaligus Ruang kolaborasi untuk menghadirkan Manfaat
+                        nyata bagi Masyarakat
+                    </p>
+                    <div class="mt-9 flex flex-wrap justify-center gap-4">
+                        <a href="#tentang"
+                            class="bg-[#C9A227] text-navy-900 px-8 py-3.5 rounded-xl font-bold shadow-lg hover:bg-[#B58F1E] transition">Kenali
+                            Kami Lebih Dekat</a>
+                        <a href="#kontak"
+                            class="bg-white/70 backdrop-blur border border-navy-900/20 text-navy-900 px-8 py-3.5 rounded-xl font-bold hover:bg-white transition">Hubungi
+                            Pengurus</a>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" id="hero-prev" aria-label="Gambar sebelumnya"
+                class="hero-arrow hidden sm:flex absolute left-4 top-1/2 -translate-y-1/2 z-50 h-11 w-11 items-center justify-center rounded-full bg-white/50 backdrop-blur border border-navy-900/20 text-navy-900 hover:bg-white transition">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M15 18l-6-6 6-6" />
+                </svg>
+            </button>
+            <button type="button" id="hero-next" aria-label="Gambar berikutnya"
+                class="hero-arrow hidden sm:flex absolute right-4 top-1/2 -translate-y-1/2 z-50 h-11 w-11 items-center justify-center rounded-full bg-white/50 backdrop-blur border border-navy-900/20 text-navy-900 hover:bg-white transition">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M9 6l6 6-6 6" />
+                </svg>
+            </button>
+
+            <div id="hero-dots" class="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2"></div>
+        </section>
+
+        <script>
+            (function () {
+                const hero = document.getElementById('home');
+                const slides = hero.querySelectorAll('.hero-slide');
+                const dotsWrap = document.getElementById('hero-dots');
+                const INTERVAL = 5000;
+                const DEPTH_INDEX = 0;
+                const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                let current = 0;
+                let timer = null;
+
+                const title = hero.querySelector('.hero-title');
+                title.setAttribute('aria-label', 'Yayasan Harmoni Abadi Sejati');
+                let charCount = 0;
+
+                title.querySelectorAll('span').forEach(line => {
+                    const text = line.textContent.replace(/\s+/g, ' ').trim();
+                    line.textContent = '';
+                    text.split(' ').forEach((word, wi, arr) => {
+                        const w = document.createElement('span');
+                        w.className = 'char-word';
+                        w.setAttribute('aria-hidden', 'true');
+                        [...word].forEach(ch => {
+                            const s = document.createElement('span');
+                            s.className = 'char';
+                            s.textContent = ch;
+                            s.style.setProperty('--d', (charCount * 0.12) + 's');
+                            s.style.setProperty('--i', charCount);
+                            w.appendChild(s);
+                            charCount++;
+                        });
+                        line.appendChild(w);
+                        if (wi < arr.length - 1) line.appendChild(document.createTextNode(' '));
+                    });
+                });
+
+                function replayTitle() {
+                    title.classList.remove('is-entering');
+                    void title.offsetWidth;
+                    title.classList.add('is-entering');
+                }
+
+                const dots = Array.from(slides, (_, i) => {
+                    const b = document.createElement('button');
+                    b.type = 'button';
+                    b.className = 'hero-dot';
+                    b.setAttribute('aria-label', 'Tampilkan gambar ' + (i + 1));
+                    b.addEventListener('click', () => { goTo(i); start(); });
+                    dotsWrap.appendChild(b);
+                    return b;
+                });
+
+                function goTo(i) {
+                    current = (i + slides.length) % slides.length;
+                    slides.forEach((s, idx) => s.classList.toggle('is-active', idx === current));
+                    dots.forEach((d, idx) => d.setAttribute('aria-current', idx === current ? 'true' : 'false'));
+                    hero.classList.toggle('hero-depth', current === DEPTH_INDEX);
+                    replayTitle();
+                }
+
+                function stop() { clearInterval(timer); timer = null; }
+                function start() {
+                    stop();
+                    if (reduceMotion || slides.length < 2) return;
+                    timer = setInterval(() => goTo(current + 1), INTERVAL);
+                }
+
+                document.getElementById('hero-prev').addEventListener('click', () => { goTo(current - 1); start(); });
+                document.getElementById('hero-next').addEventListener('click', () => { goTo(current + 1); start(); });
+
+                hero.addEventListener('mouseenter', stop);
+                hero.addEventListener('mouseleave', start);
+                hero.addEventListener('focusin', stop);
+                hero.addEventListener('focusout', start);
+                document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+
+                let touchX = null;
+                hero.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; stop(); }, { passive: true });
+                hero.addEventListener('touchend', e => {
+                    if (touchX !== null) {
+                        const dx = e.changedTouches[0].clientX - touchX;
+                        if (Math.abs(dx) > 50) goTo(current + (dx < 0 ? 1 : -1));
+                    }
+                    touchX = null;
+                    start();
+                }, { passive: true });
+
+                goTo(0);
+                start();
+            })();
+        </script>
+
+        <!-- ============ LIVE COUNT DONASI ============ -->
+        <section id="live_count" class="py-20 bg-gold-50">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <span class="kicker">LIVE COUNT</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 mt-4 tracking-tight">Total Donasi
+                        Terkumpul</h2>
+                    <div class="divider"></div>
+                </div>
+                <div class="bg-white rounded-3xl border border-gold-200 card-shadow p-6 sm:p-10">
+                    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                        <div>
+                            <p class="text-xs font-bold text-ink-soft uppercase tracking-widest">Total terverifikasi</p>
+                            <p id="tpTotal" class="text-4xl sm:text-5xl font-extrabold text-navy-900 mt-1">Rp 0</p>
+                            <p id="tpCount" class="text-sm font-semibold text-gold-700 mt-1"></p>
+                        </div>
+                        <div class="sm:text-right text-xs text-ink-soft leading-relaxed">
+                            <p id="tpUpdate"></p>
+                            <p>Waktu sekarang: <span id="tpNow" class="font-bold text-navy-900 tabular-nums"></span></p>
+                        </div>
+                    </div>
+                    <div id="tpChart" class="mt-8"></div>
+                    <div class="mt-6 text-center">
+                        <a href="#donasi"
+                            class="inline-flex gold-gradient text-navy-900 font-extrabold px-7 py-3.5 rounded-xl shadow-lg hover:brightness-105 transition text-sm"><i
+                                class="fas fa-hand-holding-heart mr-2"></i>Donasi Sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ TENTANG KAMI ============ -->
+        <section id="tentang" class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="kicker">Profil &amp; Sejarah</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 mt-4 tracking-tight">Tentang Yayasan
+                        Harmoni Abadi Sejati</h2>
+                    <div class="divider"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+                    <div class="relative isolate">
+                        <div class="absolute -bottom-6 -left-6 h-44 w-44 rounded-3xl bg-gold-200 -z-10 hidden sm:block">
+                        </div>
+                        <div class="grid grid-cols-2 gap-6">
+                            <img src="img/pelantikan1.jpeg" alt="Pelantikan Yayasan" loading="lazy"
+                                class="w-full h-72 sm:h-96 object-cover rounded-3xl card-shadow bg-gold-100">
+                            <img src="img/pelantikan2.jpeg" alt="Pengurus Yayasan" loading="lazy"
+                                class="w-full h-72 sm:h-96 object-cover rounded-3xl card-shadow bg-gold-100 mt-12">
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-navy-900 leading-snug">
+                            Pelantikan Pengurus &amp; Pengawas di Bima Restaurant, Surabaya
+                        </h3>
+
+                        <div class="mt-5 space-y-4 text-ink-soft text-base leading-relaxed">
+                            <p>
+                                Suasana penuh khidmat menyelimuti acara pelantikan pengurus dan pengawas
+                                <strong class="text-navy-900 font-semibold">Yayasan Harmoni Abadi Sejati</strong> yang
+                                digelar di
+                                Bima Restaurant, Surabaya, Kamis (5/2/2026). Acara ini dihadiri sejumlah tokoh penting,
+                                di antaranya anggota Komisi D DPRD Kota Surabaya, Dr. Imam Syafii, SH, MH serta Kepala
+                                Dinas Sosial Kota Surabaya, Mia Santi Dewi, SH, M.Si.
+                            </p>
+                            <p>
+                                Yayasan ini dibentuk sebagai wadah kepedulian, jembatan pengabdian, sekaligus ruang
+                                kolaborasi untuk menghadirkan manfaat nyata bagi masyarakat di tengah masih banyaknya
+                                tantangan sosial dan pendidikan.
+                            </p>
+                        </div>
+
+                        <blockquote
+                            class="mt-7 border-l-4 border-gold-400 bg-gold-50 rounded-r-2xl px-6 py-5 font-serif italic text-navy-800 text-base leading-relaxed">
+                            &ldquo;Tidak semua orang memperoleh kesempatan untuk mengemban amanah kebaikan seperti ini.
+                            Semoga pengabdian ini membawa kebaikan bagi banyak orang.&rdquo;
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ JAJARAN PENGURUS (CAROUSEL) ============ -->
+        <style>
+            /* Ornamen lingkaran: posisi diubah lewat JS tiap slide, CSS ini yang membuatnya bergerak halus */
+            #pengurus-panel [data-orb] {
+                position: absolute;
+                border-radius: 9999px;
+                pointer-events: none;
+                transform: translate(-50%, -50%);
+                transition: left 1.6s cubic-bezier(.65, 0, .35, 1), top 1.6s cubic-bezier(.65, 0, .35, 1),
+                    width 1.6s cubic-bezier(.65, 0, .35, 1), height 1.6s cubic-bezier(.65, 0, .35, 1),
+                    background-color .9s, border-color .9s;
+                animation: orb-float 9s ease-in-out infinite;
+            }
+
+            #pengurus-panel [data-orb="a"] {
+                background: rgba(255, 255, 255, .30);
+            }
+
+            #pengurus-panel [data-orb="b"] {
+                border: 1px solid rgba(255, 255, 255, .6);
+                animation-delay: -3s;
+            }
+
+            #pengurus-panel [data-orb="c"] {
+                background: rgba(255, 255, 255, .5);
+                animation-delay: -6s;
+                animation-duration: 6s;
+            }
+
+            @keyframes orb-float {
+
+                0%,
+                100% {
+                    translate: 0 0;
+                }
+
+                50% {
+                    translate: 0 16px;
+                }
+            }
+
+            /* Lapisan navy: muncul perlahan saat slide pengawas aktif */
+            #pengurus-panel [data-navy] {
+                background: linear-gradient(135deg, #2B4673 0%, #1E3357 55%, #14233F 100%);
+                opacity: 0;
+                transition: opacity .9s ease;
+            }
+
+            #pengurus-panel[data-theme="navy"] [data-navy] {
+                opacity: 1;
+            }
+
+            #pengurus-panel[data-theme="navy"] [data-orb="a"] {
+                background: rgba(221, 180, 67, .16);
+            }
+
+            #pengurus-panel[data-theme="navy"] [data-orb="b"] {
+                border-color: rgba(237, 206, 110, .55);
+            }
+
+            #pengurus-panel[data-theme="navy"] [data-orb="c"] {
+                background: rgba(237, 206, 110, .45);
+            }
+
+            #pengurus-panel[data-theme="navy"] [data-counter] {
+                color: rgba(255, 255, 255, .75);
+            }
+
+            #pengurus-panel [data-dots] button {
+                transition: width .3s, background-color .9s;
+            }
+
+            #pengurus-panel[data-theme="navy"] [data-dots] button {
+                background: rgba(255, 255, 255, .35);
+            }
+
+            #pengurus-panel[data-theme="navy"] [data-dots] button[aria-selected="true"] {
+                background: #DDB443;
+            }
+
+            /* Isi slide masuk sedikit demi sedikit saat slide aktif */
+            @keyframes slide-pop {
+                from {
+                    opacity: 0;
+                    transform: scale(.94) rotate(-1.5deg);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: none;
+                }
+            }
+
+            @keyframes slide-rise {
+                from {
+                    opacity: 0;
+                    transform: translateY(18px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: none;
+                }
+            }
+
+            #pengurus-carousel [data-active="true"] .grid>img {
+                animation: slide-pop .9s cubic-bezier(.22, 1, .36, 1) both;
+            }
+
+            #pengurus-carousel [data-active="true"] .grid>div {
+                animation: slide-rise .8s .12s cubic-bezier(.22, 1, .36, 1) both;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+
+                #pengurus-panel [data-orb],
+                #pengurus-carousel [data-active="true"] .grid>* {
+                    animation: none;
+                    transition: none;
+                }
+            }
+        </style>
+
+        <section id="pimpinan" class="px-4 sm:px-6 lg:px-8 pb-24 bg-white">
+            <div id="pengurus-panel"
+                class="relative overflow-hidden max-w-7xl mx-auto rounded-[2rem] gold-panel card-shadow px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
+
+                <div data-navy class="absolute inset-0 pointer-events-none"></div>
+                <div data-orb="a" style="width:288px;height:288px"></div>
+                <div data-orb="b" style="width:224px;height:224px"></div>
+                <div data-orb="c" style="width:56px;height:56px"></div>
+
+                <div id="pengurus-carousel" class="relative" role="region" aria-roledescription="carousel"
+                    aria-label="Jajaran pengurus Yayasan Harmoni Abadi Sejati" tabindex="0">
+
+                    <div class="overflow-hidden">
+                        <div data-track
+                            class="flex items-stretch transition-transform duration-700 ease-out motion-reduce:transition-none">
+
+                            <!-- 1. PEMBINA: Neck Inkiriwang -->
+                            <article class="w-full shrink-0 p-2" role="group" aria-roledescription="slide">
+                                <div
+                                    class="grid grid-cols-1 lg:grid-cols-[minmax(0,26rem)_1fr] gap-10 lg:gap-16 items-center h-full">
+                                    <img src="img/ketua.jpeg" alt="Neck Inkiriwang - Pembina Yayasan"
+                                        class="w-full max-w-sm mx-auto aspect-square object-cover object-top rounded-3xl card-shadow bg-gold-100 ring-8 ring-white">
+                                    <div>
+                                        <span
+                                            class="inline-flex items-center gap-2 bg-navy-900 text-white text-xs font-bold uppercase tracking-[0.18em] px-4 py-2 rounded-full">
+                                            <i class="fas fa-star text-gold-300 text-[10px]"></i> Pembina Yayasan
+                                        </span>
+                                        <h3
+                                            class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 mt-4 tracking-tight leading-tight">
+                                            Neck Inkiriwang</h3>
+                                        <p class="text-navy-800 font-semibold mt-2">Pembina Yayasan Harmoni Abadi Sejati
+                                        </p>
+                                        <blockquote
+                                            class="relative mt-7 bg-white text-navy-900 rounded-2xl pl-8 pr-16 py-7 font-serif italic text-lg leading-relaxed shadow-lg border-l-4 border-navy-900">
+                                            &ldquo;Kehidupan yang bermakna lahir dari niat baik, kerja nyata, hubungan
+                                            yang sehat, serta kepedulian sosial yang diwujudkan dalam tindakan.&rdquo;
+                                            <i
+                                                class="fas fa-quote-right absolute top-6 right-6 text-3xl text-gold-500"></i>
+                                        </blockquote>
+                                        <p class="mt-6 text-navy-900/85 leading-relaxed">
+                                            Di bawah bimbingan Neck Inkiriwang, yayasan berkomitmen untuk terus
+                                            merencanakan program kemanusiaan dengan bijaksana, integritas tinggi, serta
+                                            memperluas kolaborasi dengan pemerintah maupun instansi swasta demi
+                                            kesejahteraan masyarakat Surabaya dan Jawa Timur.
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 2. PEMBINA -->
+                            <article class="w-full shrink-0 p-2" role="group" aria-roledescription="slide">
+                                <div
+                                    class="grid grid-cols-1 lg:grid-cols-[minmax(0,26rem)_1fr] gap-10 lg:gap-16 items-center h-full">
+                                    <img src="img/Pembina yayasan 2.jpeg" loading="lazy"
+                                        alt="Prof. Dr. Ir. Sutanto Hidayat Mamfi, S.H. - Pembina Yayasan"
+                                        class="w-full max-w-sm mx-auto aspect-square object-cover object-top rounded-3xl card-shadow bg-gold-100 ring-8 ring-white">
+                                    <div>
+                                        <span
+                                            class="inline-flex items-center gap-2 bg-navy-900 text-white text-xs font-bold uppercase tracking-[0.18em] px-4 py-2 rounded-full">
+                                            <i class="fas fa-star text-gold-300 text-[10px]"></i> Pembina Yayasan
+                                        </span>
+                                        <h3
+                                            class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 mt-4 tracking-tight leading-tight">
+                                            Prof. dr. Ir. Sutanto Hidayat Mamfi, S.H.</h3>
+                                        <p class="text-navy-800 font-semibold mt-2">Pembina Yayasan Harmoni Abadi Sejati
+                                        </p>
+                                        <p class="mt-6 text-navy-900/85 leading-relaxed max-w-xl">
+                                            Memberikan arah, pertimbangan, dan pengawasan agar seluruh program yayasan
+                                            berjalan sesuai tujuan dan nilai-nilai yang dipegang bersama.
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 3. KETUA -->
+                            <article class="w-full shrink-0 p-2" role="group" aria-roledescription="slide">
+                                <div
+                                    class="grid grid-cols-1 lg:grid-cols-[minmax(0,26rem)_1fr] gap-10 lg:gap-16 items-center h-full">
+                                    <img src="img/ketua1.jpeg" loading="lazy"
+                                        alt="drg. Riany Alim, Sp.K.G. - Ketua Yayasan"
+                                        class="w-full max-w-sm mx-auto aspect-square object-cover object-top rounded-3xl card-shadow bg-gold-100 ring-8 ring-white">
+                                    <div>
+                                        <span
+                                            class="inline-flex items-center gap-2 bg-navy-900 text-white text-xs font-bold uppercase tracking-[0.18em] px-4 py-2 rounded-full">
+                                            <i class="fas fa-star text-gold-300 text-[10px]"></i> Ketua Yayasan
+                                        </span>
+                                        <h3
+                                            class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 mt-4 tracking-tight leading-tight">
+                                            drg. Riany Alim, Sp.K.G.</h3>
+                                        <p class="text-navy-800 font-semibold mt-2">Ketua Yayasan Harmoni Abadi Sejati
+                                        </p>
+                                        <p class="mt-6 text-navy-900/85 leading-relaxed max-w-xl">
+                                            Memimpin pelaksanaan program dan kegiatan yayasan sehari-hari, serta menjaga
+                                            kolaborasi dengan pemerintah, instansi swasta, dan masyarakat.
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 4. WAKIL KETUA -->
+                            <article class="w-full shrink-0 p-2" role="group" aria-roledescription="slide">
+                                <div
+                                    class="grid grid-cols-1 lg:grid-cols-[minmax(0,26rem)_1fr] gap-10 lg:gap-16 items-center h-full">
+                                    <img src="img/wakil.jpeg" loading="lazy"
+                                        alt="Wadi Rajasa Kusuma - Wakil Ketua Yayasan"
+                                        class="w-full max-w-sm mx-auto aspect-square object-cover object-top rounded-3xl card-shadow bg-gold-100 ring-8 ring-white">
+                                    <div>
+                                        <span
+                                            class="inline-flex items-center gap-2 bg-navy-900 text-white text-xs font-bold uppercase tracking-[0.18em] px-4 py-2 rounded-full">
+                                            <i class="fas fa-star text-gold-300 text-[10px]"></i> Wakil Ketua Yayasan
+                                        </span>
+                                        <h3
+                                            class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 mt-4 tracking-tight leading-tight">
+                                            Wadi Rajasa Kusuma</h3>
+                                        <p class="text-navy-800 font-semibold mt-2">Wakil Ketua Yayasan Harmoni Abadi
+                                            Sejati</p>
+                                        <p class="mt-6 text-navy-900/85 leading-relaxed max-w-xl">
+                                            Mendampingi Ketua dalam menjalankan program dan kegiatan yayasan, serta
+                                            mewakili Ketua bila berhalangan.
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 5. SEKRETARIS -->
+                            <article class="w-full shrink-0 p-2" role="group" aria-roledescription="slide">
+                                <div
+                                    class="grid grid-cols-1 lg:grid-cols-[minmax(0,26rem)_1fr] gap-10 lg:gap-16 items-center h-full">
+                                    <img src="img/sekertaris.JPG" loading="lazy"
+                                        alt="Dr. Sukaryantho, M.Si. - Sekretaris Yayasan"
+                                        class="w-full max-w-sm mx-auto aspect-square object-cover object-top rounded-3xl card-shadow bg-gold-100 ring-8 ring-white">
+                                    <div>
+                                        <span
+                                            class="inline-flex items-center gap-2 bg-navy-900 text-white text-xs font-bold uppercase tracking-[0.18em] px-4 py-2 rounded-full">
+                                            <i class="fas fa-star text-gold-300 text-[10px]"></i> Sekretaris
+                                        </span>
+                                        <h3
+                                            class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 mt-4 tracking-tight leading-tight">
+                                            Dr. Sukaryantho, M.Si.</h3>
+                                        <p class="text-navy-800 font-semibold mt-2">Sekretaris Yayasan Harmoni Abadi
+                                            Sejati</p>
+                                        <p class="mt-6 text-navy-900/85 leading-relaxed max-w-xl">
+                                            Mengelola administrasi, dokumentasi, dan korespondensi yayasan agar seluruh
+                                            kegiatan tercatat dengan tertib.
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 6. BENDAHARA 1 -->
+                            <article class="w-full shrink-0 p-2" role="group" aria-roledescription="slide">
+                                <div
+                                    class="grid grid-cols-1 lg:grid-cols-[minmax(0,26rem)_1fr] gap-10 lg:gap-16 items-center h-full">
+                                    <img src="img/bendahara1.jpeg" loading="lazy"
+                                        alt="Untjahjono Budiman - Bendahara 1 Yayasan"
+                                        class="w-full max-w-sm mx-auto aspect-square object-cover object-top rounded-3xl card-shadow bg-gold-100 ring-8 ring-white">
+                                    <div>
+                                        <span
+                                            class="inline-flex items-center gap-2 bg-navy-900 text-white text-xs font-bold uppercase tracking-[0.18em] px-4 py-2 rounded-full">
+                                            <i class="fas fa-star text-gold-300 text-[10px]"></i> Bendahara 1
+                                        </span>
+                                        <h3
+                                            class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 mt-4 tracking-tight leading-tight">
+                                            Untjahjono Budiman</h3>
+                                        <p class="text-navy-800 font-semibold mt-2">Bendahara 1 Yayasan Harmoni Abadi
+                                            Sejati</p>
+                                        <p class="mt-6 text-navy-900/85 leading-relaxed max-w-xl">
+                                            Mengelola keuangan yayasan secara transparan dan akuntabel, termasuk
+                                            penerimaan dan penyaluran dana program.
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 7. BENDAHARA 2 -->
+                            <article class="w-full shrink-0 p-2" role="group" aria-roledescription="slide">
+                                <div
+                                    class="grid grid-cols-1 lg:grid-cols-[minmax(0,26rem)_1fr] gap-10 lg:gap-16 items-center h-full">
+                                    <img src="img/bendahara 2.jpeg" loading="lazy"
+                                        alt="Virginia Gunawan - Bendahara 2 Yayasan"
+                                        class="w-full max-w-sm mx-auto aspect-square object-cover object-top rounded-3xl card-shadow bg-gold-100 ring-8 ring-white">
+                                    <div>
+                                        <span
+                                            class="inline-flex items-center gap-2 bg-navy-900 text-white text-xs font-bold uppercase tracking-[0.18em] px-4 py-2 rounded-full">
+                                            <i class="fas fa-star text-gold-300 text-[10px]"></i> Bendahara 2
+                                        </span>
+                                        <h3
+                                            class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 mt-4 tracking-tight leading-tight">
+                                            Virginia Gunawan</h3>
+                                        <p class="text-navy-800 font-semibold mt-2">Bendahara 2 Yayasan Harmoni Abadi
+                                            Sejati</p>
+                                        <p class="mt-6 text-navy-900/85 leading-relaxed max-w-xl">
+                                            Mendampingi Bendahara 1 dalam pencatatan dan pelaporan keuangan yayasan.
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 8. KETUA PENGAWAS (kartu navy) -->
+                            <article class="w-full shrink-0 p-2" role="group" aria-roledescription="slide"
+                                data-theme="navy">
+                                <div
+                                    class="grid grid-cols-1 lg:grid-cols-[minmax(0,26rem)_1fr] gap-10 lg:gap-16 items-center h-full">
+                                    <img src="img/Pengawas 1.jpeg" loading="lazy"
+                                        alt="Prof. Dr. drg. Moch. Rubianto, MS - Ketua Pengawas Yayasan"
+                                        class="w-full max-w-sm mx-auto aspect-square object-cover object-top rounded-3xl shadow-2xl bg-navy-800 ring-8 ring-gold-400">
+                                    <div>
+                                        <span
+                                            class="inline-flex items-center gap-2 bg-gold-400 text-navy-900 text-xs font-bold uppercase tracking-[0.18em] px-4 py-2 rounded-full">
+                                            <i class="fas fa-shield-halved text-[10px]"></i> Ketua Pengawas
+                                        </span>
+                                        <h3
+                                            class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-4 tracking-tight leading-tight">
+                                            Prof. Dr. drg. Moch. Rubianto, MS</h3>
+                                        <p class="text-gold-200 font-semibold mt-2">Ketua Pengawas Yayasan Harmoni Abadi
+                                            Sejati</p>
+                                        <p class="mt-6 text-white/85 leading-relaxed max-w-xl">
+                                            Memimpin fungsi pengawasan terhadap kepengurusan dan pelaksanaan program
+                                            yayasan agar tetap sesuai dengan anggaran dasar, tujuan, dan prinsip
+                                            akuntabilitas.
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 9. ANGGOTA PENGAWAS (kartu navy) -->
+                            <article class="w-full shrink-0 p-2" role="group" aria-roledescription="slide"
+                                data-theme="navy">
+                                <div
+                                    class="grid grid-cols-1 lg:grid-cols-[minmax(0,26rem)_1fr] gap-10 lg:gap-16 items-center h-full">
+                                    <img src="img/Pengawas 2.jpeg" loading="lazy"
+                                        alt="Siono Sugiarto - Anggota Pengawas Yayasan"
+                                        class="w-full max-w-sm mx-auto aspect-square object-cover object-top rounded-3xl shadow-2xl bg-navy-800 ring-8 ring-gold-400">
+                                    <div>
+                                        <span
+                                            class="inline-flex items-center gap-2 bg-gold-400 text-navy-900 text-xs font-bold uppercase tracking-[0.18em] px-4 py-2 rounded-full">
+                                            <i class="fas fa-shield-halved text-[10px]"></i> Anggota Pengawas
+                                        </span>
+                                        <h3
+                                            class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-4 tracking-tight leading-tight">
+                                            Siono Sugiarto</h3>
+                                        <p class="text-gold-200 font-semibold mt-2">Anggota Pengawas Yayasan Harmoni
+                                            Abadi Sejati</p>
+                                        <p class="mt-6 text-white/85 leading-relaxed max-w-xl">
+                                            Mendampingi Ketua Pengawas dalam mengawasi jalannya kepengurusan dan
+                                            kegiatan yayasan, serta memberi masukan demi tata kelola yang tertib dan
+                                            transparan.
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+
+                        </div>
+                    </div>
+
+                    <div class="relative mt-8 flex items-center justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <div data-dots class="flex items-center gap-2" role="tablist" aria-label="Pilih pengurus">
+                            </div>
+                            <span data-counter class="text-sm font-semibold text-navy-900/70 tabular-nums"
+                                aria-live="polite"></span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button type="button" data-prev aria-label="Pengurus sebelumnya"
+                                class="h-12 w-12 rounded-full bg-white text-navy-900 shadow-lg grid place-items-center hover:bg-navy-900 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy-900 transition-colors">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button type="button" data-next aria-label="Pengurus berikutnya"
+                                class="h-12 w-12 rounded-full bg-white text-navy-900 shadow-lg grid place-items-center hover:bg-navy-900 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy-900 transition-colors">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            (function () {
+                var root = document.getElementById('pengurus-carousel');
+                if (!root) return;
+                var panel = document.getElementById('pengurus-panel');
+                var track = root.querySelector('[data-track]');
+                var slides = Array.prototype.slice.call(track.children);
+                var dotsWrap = root.querySelector('[data-dots]');
+                var counter = root.querySelector('[data-counter]');
+                var orbs = Array.prototype.slice.call(panel.querySelectorAll('[data-orb]'));
+                var total = slides.length;
+                var index = 0;
+                var timer = null;
+                var AUTOPLAY_MS = 7000;
+                var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                // Ornamen mengorbit: tiap slide bergeser 40° (9 slide x 40° = 360°, jadi putarannya menyambung mulus).
+                // r = jarak orbit (0-1 dari lebar/tinggi kartu), a0 = sudut awal, s = ukuran dasar (px).
+                var ORB = [
+                    { r: [0.60, 0.72], a0: -45, s: 288 },
+                    { r: [0.55, 0.70], a0: 135, s: 224 },
+                    { r: [0.40, 0.50], a0: 45, s: 56 }
+                ];
+                var STEP = 40;
+                function moveOrbs(i) {
+                    orbs.forEach(function (o, j) {
+                        var c = ORB[j], t = (c.a0 + i * STEP) * Math.PI / 180;
+                        o.style.left = (50 + c.r[0] * 100 * Math.cos(t)) + '%';
+                        o.style.top = (50 + c.r[1] * 100 * Math.sin(t)) + '%';
+                        var size = Math.round(c.s * (0.85 + 0.15 * ((i + j) % 3)));
+                        o.style.width = o.style.height = size + 'px';
+                    });
+                }
+
+                slides.forEach(function (s, i) { s.setAttribute('aria-label', (i + 1) + ' dari ' + total); });
+
+                var dots = slides.map(function (_, i) {
+                    var b = document.createElement('button');
+                    b.type = 'button';
+                    b.setAttribute('role', 'tab');
+                    b.setAttribute('aria-label', 'Tampilkan pengurus ' + (i + 1));
+                    b.className = 'h-2.5 rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy-900';
+                    b.addEventListener('click', function () { go(i); restart(); });
+                    dotsWrap.appendChild(b);
+                    return b;
+                });
+
+                function go(n) {
+                    index = (n + total) % total;
+                    track.style.transform = 'translateX(-' + (index * 100) + '%)';
+                    slides.forEach(function (s, i) {
+                        var active = i === index;
+                        s.setAttribute('aria-hidden', active ? 'false' : 'true');
+                        s.setAttribute('data-active', active ? 'true' : 'false');
+                        if ('inert' in s) s.inert = !active;
+                    });
+                    dots.forEach(function (d, i) {
+                        var active = i === index;
+                        d.setAttribute('aria-selected', active ? 'true' : 'false');
+                        d.className = d.className.replace(/\b(w-8|w-2\.5|bg-navy-900|bg-navy-900\/30)\b/g, '').replace(/\s+/g, ' ').trim() +
+                            (active ? ' w-8 bg-navy-900' : ' w-2.5 bg-navy-900/30');
+                    });
+                    counter.textContent = (index + 1) + ' / ' + total;
+                    panel.setAttribute('data-theme', slides[index].getAttribute('data-theme') || 'gold');
+                    moveOrbs(index);
+                }
+
+                function start() {
+                    if (reduceMotion || timer) return;
+                    timer = setInterval(function () { go(index + 1); }, AUTOPLAY_MS);
+                }
+                function stop() { clearInterval(timer); timer = null; }
+                function restart() { stop(); start(); }
+
+                root.querySelector('[data-prev]').addEventListener('click', function () { go(index - 1); restart(); });
+                root.querySelector('[data-next]').addEventListener('click', function () { go(index + 1); restart(); });
+
+                root.addEventListener('mouseenter', stop);
+                root.addEventListener('mouseleave', start);
+                root.addEventListener('focusin', stop);
+                root.addEventListener('focusout', start);
+
+                root.addEventListener('keydown', function (e) {
+                    if (e.key === 'ArrowLeft') { go(index - 1); }
+                    if (e.key === 'ArrowRight') { go(index + 1); }
+                });
+
+                var startX = null;
+                root.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; stop(); }, { passive: true });
+                root.addEventListener('touchend', function (e) {
+                    if (startX === null) return;
+                    var dx = e.changedTouches[0].clientX - startX;
+                    if (Math.abs(dx) > 50) go(index + (dx < 0 ? 1 : -1));
+                    startX = null;
+                    start();
+                }, { passive: true });
+
+                go(0);
+                start();
+            })();
+        </script>
+
+        <!-- ============ VISI & MISI ============ -->
+        <section id="visimisi" class="py-24 bg-gold-50">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <span class="kicker">Landasan &amp; Arah Gerak</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-navy-900 mt-4 tracking-tight">Visi &amp; Misi
+                        Yayasan</h2>
+                    <div class="divider"></div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-[2rem] bg-white border border-gold-200 card-shadow">
+                    <div class="vm-topbar absolute inset-x-0 top-0 h-2 z-10"></div>
+
+                    <!-- VISI -->
+                    <div
+                        class="vm-visi vm-watch navy-gradient relative overflow-hidden px-6 pt-20 pb-16 sm:px-12 lg:px-24 lg:pt-24 lg:pb-24 text-center">
+                        <div
+                            class="vm-orb absolute -top-28 -left-28 h-80 w-80 rounded-full border border-gold-300/20 pointer-events-none">
+                        </div>
+                        <div class="vm-orb absolute -bottom-32 -right-24 h-96 w-96 rounded-full bg-white/5 pointer-events-none"
+                            style="animation-delay:-4s"></div>
+
+                        <div class="relative">
+                            <span
+                                class="vm-pop inline-flex items-center gap-3 gold-gradient text-navy-900 text-xl font-extrabold px-7 py-3 rounded-full shadow-lg">
+                                <i class="fas fa-bullseye"></i> Visi
+                            </span>
+                            <p
+                                class="vm-visi-text mx-auto mt-10 max-w-4xl text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-[1.3] tracking-tight text-white">
+                                Menjadikan <span><mark class="vm-hl">katalisator peradaban</mark></span> yang unggul
+                                melalui penguatan aspek <span><mark class="vm-ul"
+                                        style="--m:0">kemanusiaan</mark>,</span> <span><mark class="vm-ul"
+                                        style="--m:1">kesehatan</mark>,</span> <span><mark class="vm-ul"
+                                        style="--m:2">pendidikan</mark>,</span> dan <span><mark class="vm-ul"
+                                        style="--m:3">kelestarian lingkungan</mark>.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- MISI -->
+                    <div class="px-6 py-16 sm:px-12 lg:px-20 lg:py-20 border-t-4 border-gold-400">
+                        <div class="vm-watch vm-reveal text-center">
+                            <span
+                                class="inline-flex items-center gap-3 gold-gradient text-navy-900 text-xl font-extrabold px-7 py-3 rounded-full shadow-lg">
+                                <i class="fas fa-flag"></i> Misi
+                            </span>
+                            <p class="mt-5 text-2xl sm:text-3xl font-extrabold text-navy-900 tracking-tight">Empat
+                                langkah nyata yang kami jalankan</p>
+                        </div>
+
+                        <ul class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <li class="vm-item vm-watch vm-reveal relative overflow-hidden flex items-center gap-5 rounded-2xl bg-gold-50 border border-gold-200 p-6 sm:p-8"
+                                style="--d:0s">
+                                <span
+                                    class="vm-icon h-16 w-16 shrink-0 rounded-2xl gold-gradient text-navy-900 flex items-center justify-center text-2xl shadow-md"><i
+                                        class="fas fa-handshake-angle"></i></span>
+                                <h4 class="text-xl sm:text-2xl font-extrabold text-navy-900 leading-snug">
+                                    Menyelenggarakan <span class="vm-mk">bantuan sosial</span></h4>
+                            </li>
+                            <li class="vm-item vm-watch vm-reveal relative overflow-hidden flex items-center gap-5 rounded-2xl bg-gold-50 border border-gold-200 p-6 sm:p-8"
+                                style="--d:.12s">
+                                <span
+                                    class="vm-icon h-16 w-16 shrink-0 rounded-2xl gold-gradient text-navy-900 flex items-center justify-center text-2xl shadow-md"><i
+                                        class="fas fa-book-medical"></i></span>
+                                <h4 class="text-xl sm:text-2xl font-extrabold text-navy-900 leading-snug">Memfasilitasi
+                                    layanan <span class="vm-mk">kesehatan</span> &amp; <span
+                                        class="vm-mk">pendidikan</span></h4>
+                            </li>
+                            <li class="vm-item vm-watch vm-reveal relative overflow-hidden flex items-center gap-5 rounded-2xl bg-gold-50 border border-gold-200 p-6 sm:p-8"
+                                style="--d:0s">
+                                <span
+                                    class="vm-icon h-16 w-16 shrink-0 rounded-2xl gold-gradient text-navy-900 flex items-center justify-center text-2xl shadow-md"><i
+                                        class="fas fa-seedling"></i></span>
+                                <h4 class="text-xl sm:text-2xl font-extrabold text-navy-900 leading-snug"><span
+                                        class="vm-mk">Konservasi</span> lingkungan</h4>
+                            </li>
+                            <li class="vm-item vm-watch vm-reveal relative overflow-hidden flex items-center gap-5 rounded-2xl bg-gold-50 border border-gold-200 p-6 sm:p-8"
+                                style="--d:.12s">
+                                <span
+                                    class="vm-icon h-16 w-16 shrink-0 rounded-2xl gold-gradient text-navy-900 flex items-center justify-center text-2xl shadow-md"><i
+                                        class="fas fa-users"></i></span>
+                                <h4 class="text-xl sm:text-2xl font-extrabold text-navy-900 leading-snug"><span
+                                        class="vm-mk">Pemberdayaan</span> potensi anggota</h4>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            (function () {
+                const section = document.getElementById('visimisi');
+                if (!section) return;
+                document.documentElement.classList.add('vm-js');
+                const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                const text = section.querySelector('.vm-visi-text');
+                let idx = 0;
+                Array.from(text.childNodes).forEach(node => {
+                    if (node.nodeType === 3) {
+                        const frag = document.createDocumentFragment();
+                        node.textContent.split(/(\s+)/).forEach(part => {
+                            if (!part) return;
+                            if (!part.trim()) { frag.appendChild(document.createTextNode(' ')); return; }
+                            const w = document.createElement('span');
+                            w.className = 'vm-word';
+                            w.style.setProperty('--i', idx++);
+                            w.textContent = part;
+                            frag.appendChild(w);
+                        });
+                        node.replaceWith(frag);
+                    } else if (node.nodeType === 1) {
+                        node.classList.add('vm-word');
+                        node.style.setProperty('--i', idx++);
+                    }
+                });
+
+                const targets = section.querySelectorAll('.vm-watch');
+                if (reduce || !('IntersectionObserver' in window)) {
+                    targets.forEach(el => el.classList.add('is-in'));
+                    return;
+                }
+                const io = new IntersectionObserver(entries => {
+                    entries.forEach(e => {
+                        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+                    });
+                }, { threshold: 0.2, rootMargin: '0px 0px -6% 0px' });
+                targets.forEach(el => io.observe(el));
+            })();
+        </script>
+
+        <!-- ============ KEGIATAN & YOUTUBE (CAROUSEL) ============ -->
+        <section id="kegiatan" class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="kicker">Dokumentasi &amp; Media</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 mt-4 tracking-tight">Video &amp;
+                        Liputan Media</h2>
+                    <div class="divider"></div>
+                </div>
+            </div>
+
+            <div id="video-region" class="w-full" role="region" aria-roledescription="carousel"
+                aria-label="Video kegiatan yayasan">
+                <div id="video-track" tabindex="0" class="video-track flex overflow-x-auto"></div>
+
+                <div class="mt-6 flex items-center justify-center gap-6">
+                    <button type="button" id="video-prev" aria-label="Video sebelumnya"
+                        class="video-btn h-12 w-12 flex items-center justify-center rounded-full gold-gradient text-navy-900 shadow-lg hover:brightness-105 transition">
+                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
+                    </button>
+                    <div id="video-dots" class="flex items-center gap-2"></div>
+                    <button type="button" id="video-next" aria-label="Video berikutnya"
+                        class="video-btn h-12 w-12 flex items-center justify-center rounded-full gold-gradient text-navy-900 shadow-lg hover:brightness-105 transition">
+                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <script>
+                (function () {
+                    // id = kode setelah "v=" atau "/live/" di link YouTube; start = detik mulai
+                    const VIDEOS = yhData('videos', [
+                        { id: "PnEIhHBZHAg", judul: "LIVE KEGIATAN YAYASAN", start: 1425 },
+                        { id: "OXLuE6ZQj70", judul: "PENANAMAN POHON MANGROVE", start: 0 },
+                        { id: "P_8WyO7_7PU", judul: "AKSI SOSIAL KEMASYARAKATAN", start: 0 }
+                    ]);
+
+                    const region = document.getElementById('video-region');
+                    const track = document.getElementById('video-track');
+                    const dotsWrap = document.getElementById('video-dots');
+                    const prev = document.getElementById('video-prev');
+                    const next = document.getElementById('video-next');
+                    const n = VIDEOS.length;
+                    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                    let current = 0;
+                    let regionVisible = false;
+                    const players = [];
+
+                    track.innerHTML = VIDEOS.map((v, i) => `
+                    <article class="video-slide shrink-0 basis-full w-full px-2 sm:px-4 py-2" role="group"
+                        aria-roledescription="slide" aria-label="${i + 1} dari ${n}">
+                        <p class="flex items-center justify-center gap-3 pb-4 font-bold text-sm sm:text-base text-navy-900">
+                            <span class="h-8 w-8 rounded-lg gold-gradient flex items-center justify-center"><i class="fab fa-youtube"></i></span>
+                            ${v.judul}
+                        </p>
+                        <div class="video-frame relative aspect-video rounded-2xl sm:rounded-3xl overflow-hidden card-shadow bg-navy-900 ring-4 ring-gold-200">
+                            <div id="yt-player-${i}" class="absolute inset-0 w-full h-full"></div>
+                            <button type="button" data-mute="${i}"
+                                class="absolute top-3 right-3 z-10 inline-flex items-center gap-2 bg-navy-900/80 text-white text-xs font-bold px-3 py-2 rounded-full hover:bg-navy-900 transition">
+                                <i class="fas fa-volume-xmark"></i> <span>Nyalakan suara</span>
+                            </button>
+                        </div>
+                    </article>`).join('');
+
+                    const dots = VIDEOS.map((_, i) => {
+                        const b = document.createElement('button');
+                        b.type = 'button';
+                        b.className = 'video-dot';
+                        b.setAttribute('aria-label', 'Tampilkan video ' + (i + 1));
+                        b.addEventListener('click', () => goTo(i));
+                        dotsWrap.appendChild(b);
+                        return b;
+                    });
+
+                    function goTo(i) {
+                        const target = (i + n) % n;
+                        track.scrollTo({ left: target * track.clientWidth, behavior: reduceMotion ? 'auto' : 'smooth' });
+                    }
+
+                    function update() {
+                        const idx = Math.max(0, Math.min(n - 1, Math.round(track.scrollLeft / track.clientWidth)));
+                        dots.forEach((d, i) => d.setAttribute('aria-current', i === idx ? 'true' : 'false'));
+                        if (idx !== current) { current = idx; syncPlayback(); }
+                    }
+
+                    let ticking = false;
+                    track.addEventListener('scroll', () => {
+                        if (ticking) return;
+                        ticking = true;
+                        requestAnimationFrame(() => { update(); ticking = false; });
+                    }, { passive: true });
+
+                    prev.addEventListener('click', () => goTo(current - 1));
+                    next.addEventListener('click', () => goTo(current + 1));
+                    track.addEventListener('keydown', e => {
+                        if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+                        if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+                    });
+                    window.addEventListener('resize', () => { track.scrollLeft = current * track.clientWidth; });
+
+                    // Hanya video di slide aktif yang berputar, dan hanya jika carousel terlihat
+                    function syncPlayback() {
+                        players.forEach((p, i) => {
+                            if (!p || typeof p.playVideo !== 'function') return;
+                            if (regionVisible && i === current) p.playVideo();
+                            else p.pauseVideo();
+                        });
+                    }
+
+                    new IntersectionObserver(entries => {
+                        regionVisible = entries[0].isIntersecting;
+                        syncPlayback();
+                    }, { threshold: 0.5 }).observe(region);
+
+                    document.addEventListener('visibilitychange', () => {
+                        if (document.hidden) players.forEach(p => p && p.pauseVideo && p.pauseVideo());
+                        else syncPlayback();
+                    });
+
+                    track.querySelectorAll('[data-mute]').forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            const p = players[+btn.dataset.mute];
+                            if (!p) return;
+                            const icon = btn.querySelector('i');
+                            const label = btn.querySelector('span');
+                            if (p.isMuted()) {
+                                p.unMute();
+                                icon.className = 'fas fa-volume-high';
+                                label.textContent = 'Matikan suara';
+                            } else {
+                                p.mute();
+                                icon.className = 'fas fa-volume-xmark';
+                                label.textContent = 'Nyalakan suara';
+                            }
+                        });
+                    });
+
+                    window.onYouTubeIframeAPIReady = function () {
+                        VIDEOS.forEach((v, i) => {
+                            players[i] = new YT.Player('yt-player-' + i, {
+                                width: '100%',
+                                height: '100%',
+                                videoId: v.id,
+                                playerVars: { start: v.start, mute: 1, playsinline: 1, rel: 0, modestbranding: 1 },
+                                events: { onReady: syncPlayback }
+                            });
+                        });
+                    };
+                    const tag = document.createElement('script');
+                    tag.src = 'https://www.youtube.com/iframe_api';
+                    document.head.appendChild(tag);
+
+                    update();
+                })();
+            </script>
+        </section>
+
+        <!-- ============ ARTIKEL / WARTA (CAROUSEL) ============ -->
+        <section id="artikel" class="warta-bg py-24">
+            <div class="w-full px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="kicker">Warta</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 mt-4 tracking-tight">Artikel Kegiatan
+                    </h2>
+                    <div class="divider"></div>
+                </div>
+
+                <div class="w-full" role="region" aria-roledescription="carousel" aria-label="Warta kegiatan yayasan">
+                    <div id="warta-track" tabindex="0" class="warta-track flex overflow-x-auto"></div>
+
+                    <div id="warta-controls" class="mt-6 flex items-center justify-center gap-6">
+                        <button type="button" id="warta-prev" aria-label="Berita sebelumnya"
+                            class="warta-btn h-12 w-12 flex items-center justify-center rounded-full gold-gradient text-navy-900 shadow-lg hover:brightness-105 transition">
+                            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M15 18l-6-6 6-6" />
+                            </svg>
+                        </button>
+                        <div id="warta-dots" class="flex items-center gap-2"></div>
+                        <button type="button" id="warta-next" aria-label="Berita berikutnya"
+                            class="warta-btn h-12 w-12 flex items-center justify-center rounded-full gold-gradient text-navy-900 shadow-lg hover:brightness-105 transition">
+                            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M9 6l6 6-6 6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            (function () {
+                const WARTA = yhData('warta', [
+                    {
+                        judul: "Pengurus Yayasan Harmoni Abadi Sejati Dilantik, Siap Jalankan Program Pendidikan dan Kesehatan",
+                        tanggal: "5 Februari 2026",
+                        ringkas: "Yayasan resmi dideklarasikan, dan pengurus serta pengawasnya dilantik di Bima Restaurant, Surabaya, dengan fokus membantu pemerintah di bidang pendidikan dan kesehatan.",
+                        url: "https://www.tvonenews.com/berita/nasional/413350-pengurus-yayasan-harmoni-abadi-sejati-dilantik-siap-jalankan-program-pendidikan-dan-kesehatan",
+                        gambar: "https://thumbs.tvonenews.com/thumbnail/2026/02/05/6984ab0edccf2-yayasan-harmoni-abadi-sejati_1265_711.jpg",
+                        gambarCadangan: "https://thumbs.tvonenews.com/thumbnail/2026/02/05/6984ab0edccf2-yayasan-harmoni-abadi-sejati_488_274.jpg"
+                    },
+                    {
+                        judul: "Peduli Warga Tanpa Keluarga, 275 Kain Kafan Diserahkan ke Dinsos Surabaya",
+                        tanggal: "8 Agustus 2026",
+                        ringkas: "Menjelang HUT ke-81 RI, yayasan menyerahkan 275 lembar kain kafan kepada Dinas Sosial Kota Surabaya untuk pemulasaraan jenazah warga binaan yang tidak memiliki keluarga.",
+                        url: "https://www.tvonenews.com/daerah/jatim/458586-dinsos-surabaya-terima-275-kain-kafan-untuk-jenazah-warga-tanpa-keluarga",
+                        gambar: "https://thumbs.tvonenews.com/thumbnail/2026/08/08/6a77197d29e60-275-kain-kafan-disalurkan-untuk-warga-kurang-mampu-di-surabaya_1265_711.jpg",
+                        gambarCadangan: "https://thumbs.tvonenews.com/thumbnail/2026/08/08/6a77197d29e60-275-kain-kafan-disalurkan-untuk-warga-kurang-mampu-di-surabaya_488_274.jpg"
+                    }
+                ]);
+
+                const esc = t => String(t == null ? '' : t).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+                const isExt = u => /^https?:\/\//i.test(String(u || ''));
+                const track = document.getElementById('warta-track');
+                const dotsWrap = document.getElementById('warta-dots');
+                const prev = document.getElementById('warta-prev');
+                const next = document.getElementById('warta-next');
+                const n = WARTA.length;
+                const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                let current = 0;
+
+                track.innerHTML = WARTA.map((a, i) => {
+                    const ext = isExt(a.url);
+                    const tgt = ext ? ' target="_blank" rel="noopener noreferrer"' : '';
+                    const label = ext ? 'Baca di tvOneNews' : 'Baca Selengkapnya';
+                    return `
+                <article class="warta-slide shrink-0 basis-full w-full px-2 py-4" role="group"
+                    aria-roledescription="slide" aria-label="${i + 1} dari ${n}">
+                    <div class="warta-ring rounded-[1.75rem] p-[2px] h-full">
+                        <div class="bg-white rounded-[1.65rem] overflow-hidden grid grid-cols-1 md:grid-cols-[1.2fr_1fr] h-full">
+                            <a href="${esc(a.url)}"${tgt}
+                                aria-label="${esc(label)}: ${esc(a.judul)}"
+                                class="relative block aspect-[4/3] md:aspect-auto md:min-h-[28rem] lg:min-h-[34rem] bg-gold-100">
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <i class="fas fa-newspaper text-6xl text-gold-400" aria-hidden="true"></i>
+                                </div>
+                                <img src="${esc(a.gambar)}" data-fallback="${esc(a.gambarCadangan)}" alt="" loading="lazy"
+                                    referrerpolicy="no-referrer" class="absolute inset-0 w-full h-full object-cover">
+                                <div class="warta-shade absolute inset-0 pointer-events-none"></div>
+                                <span class="absolute top-4 left-4 bg-white/90 backdrop-blur text-navy-900 text-sm font-bold px-4 py-1.5 rounded-full shadow">Kegiatan ${i + 1}</span>
+                            </a>
+                            <div class="warta-panel p-6 sm:p-10 lg:p-14 flex flex-col justify-center">
+                                <p class="text-gold-700 font-semibold text-sm flex items-center gap-2">
+                                    <i class="far fa-calendar text-gold-500" aria-hidden="true"></i> ${esc(a.tanggal)}
+                                </p>
+                                <h3 class="font-extrabold text-navy-900 text-2xl sm:text-3xl lg:text-4xl mt-4 leading-tight tracking-tight">${esc(a.judul)}</h3>
+                                <p class="text-ink-soft text-base lg:text-lg mt-5 leading-relaxed">${esc(a.ringkas)}</p>
+                                <div class="pt-8">
+                                    <a href="${esc(a.url)}"${tgt}
+                                        class="inline-flex items-center gap-2.5 bg-navy-900 text-white font-bold text-base px-7 py-3.5 rounded-xl shadow-lg hover:bg-navy-800 transition">
+                                        ${esc(label)} <i class="fas ${ext ? 'fa-arrow-up-right-from-square' : 'fa-arrow-right'} text-xs text-gold-300" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>`;
+                }).join('');
+
+                track.querySelectorAll('img').forEach(img => {
+                    img.addEventListener('error', () => {
+                        if (img.dataset.fallback && !img.dataset.tried) {
+                            img.dataset.tried = '1';
+                            img.src = img.dataset.fallback;
+                        } else {
+                            img.remove();
+                        }
+                    });
+                });
+
+                const dots = WARTA.map((_, i) => {
+                    const b = document.createElement('button');
+                    b.type = 'button';
+                    b.className = 'warta-dot';
+                    b.setAttribute('aria-label', 'Tampilkan berita ' + (i + 1));
+                    b.addEventListener('click', () => goTo(i));
+                    dotsWrap.appendChild(b);
+                    return b;
+                });
+
+                function goTo(i) {
+                    const target = (i + n) % n;
+                    track.scrollTo({ left: target * track.clientWidth, behavior: reduceMotion ? 'auto' : 'smooth' });
+                }
+
+                function update() {
+                    current = Math.max(0, Math.min(n - 1, Math.round(track.scrollLeft / track.clientWidth)));
+                    dots.forEach((d, i) => d.setAttribute('aria-current', i === current ? 'true' : 'false'));
+                }
+
+                let ticking = false;
+                track.addEventListener('scroll', () => {
+                    if (ticking) return;
+                    ticking = true;
+                    requestAnimationFrame(() => { update(); ticking = false; });
+                }, { passive: true });
+
+                prev.addEventListener('click', () => goTo(current - 1));
+                next.addEventListener('click', () => goTo(current + 1));
+                track.addEventListener('keydown', e => {
+                    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+                    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+                });
+
+                window.addEventListener('resize', () => { track.scrollLeft = current * track.clientWidth; });
+
+                if (n < 2) document.getElementById('warta-controls').classList.add('hidden');
+
+                update();
+            })();
+        </script>
+
+        <!-- ============ DONASI ============ -->
+        <section id="donasi" class="py-24 bg-white">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="kicker">Berdonasi</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 mt-4 tracking-tight">Salurkan Donasi
+                        Anda</h2>
+                    <div class="divider"></div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-[20rem_1fr] gap-8 items-start">
+                    <div class="navy-gradient text-white rounded-3xl p-7 card-shadow">
+                        <p class="text-xs font-bold uppercase tracking-[0.18em] text-gold-200">Transfer ke rekening</p>
+                        <p class="mt-4 text-lg font-extrabold">Bank BCA</p>
+                        <p id="noRek" class="text-3xl font-extrabold tracking-wider mt-1">8294888800</p>
+                        <p class="text-sm text-white/85 mt-1">a.n. YAYASAN HARMONI ABADI</p>
+                        <button type="button" id="copyRek"
+                            class="mt-5 text-xs font-bold bg-white/10 hover:bg-white/20 border border-white/20 px-4 py-2 rounded-lg transition"><i
+                                class="far fa-copy mr-1.5"></i><span>Salin nomor rekening</span></button>
+                        <p class="mt-6 text-xs text-white/75 leading-relaxed">Saat ini donasi hanya melalui transfer.
+                            Setelah transfer, isi form dan unggah bukti transfer. Donasi akan dihitung setelah dicek
+                            oleh pengurus.</p>
+                    </div>
+
+                    <form id="donasiForm"
+                        class="bg-gold-50 rounded-3xl border border-gold-200 card-shadow p-6 sm:p-8 space-y-5">
+                        <div class="grid sm:grid-cols-2 gap-5">
+                            <label class="block"><span class="block text-xs font-bold text-navy-900 mb-1.5">Nominal
+                                    donasi (Rp) *</span>
+                                <input name="nominal" type="number" min="10000" step="1" inputmode="numeric" required
+                                    class="fld" placeholder="contoh: 500000"></label>
+                            <label class="block"><span class="block text-xs font-bold text-navy-900 mb-1.5">Nama donatur
+                                    *</span>
+                                <input name="nama" maxlength="80" required class="fld"></label>
+                            <label class="block"><span class="block text-xs font-bold text-navy-900 mb-1.5">No. telepon
+                                    / WhatsApp *</span>
+                                <input name="telp" type="tel" maxlength="20" required class="fld"></label>
+                            <label class="block"><span class="block text-xs font-bold text-navy-900 mb-1.5">No. rekening
+                                    pengirim *</span>
+                                <input name="rekening" inputmode="numeric" maxlength="30" required class="fld"></label>
+                        </div>
+                        <label class="block"><span class="block text-xs font-bold text-navy-900 mb-1.5">Transfer atas
+                                nama *
+                                <span class="font-medium text-ink-soft">(hanya dilihat pengurus, tidak ditampilkan di
+                                    website)</span></span>
+                            <input name="atasNama" maxlength="80" required class="fld"></label>
+                        <label class="block"><span class="block text-xs font-bold text-navy-900 mb-1.5">Bukti transfer *
+                                <span class="font-medium text-ink-soft">(tangkapan layar m-banking atau foto struk ATM,
+                                    maks. 10 MB)</span></span>
+                            <input name="bukti" type="file" accept="image/jpeg,image/png,image/webp" required
+                                class="fld file:mr-3 file:rounded-lg file:border-0 file:bg-gold-200 file:px-3 file:py-1.5 file:font-bold file:text-navy-900"></label>
+                        <div id="donasiStatus" role="status" class="hidden p-3 rounded-xl text-xs border"></div>
+                        <button id="donasiBtn" type="submit"
+                            class="w-full gold-gradient text-navy-900 font-extrabold py-3.5 rounded-xl shadow-lg hover:brightness-105 transition text-sm">Kirim
+                            Konfirmasi Donasi <i class="fas fa-paper-plane ml-1.5 text-xs"></i></button>
+                        <p class="text-[11px] text-ink-soft leading-relaxed">Data pribadi Anda hanya dipakai pengurus
+                            untuk memverifikasi donasi dan tidak ditampilkan kepada pengunjung.</p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ KONTAK + KRITIK & SARAN ============ -->
+        <section id="kontak" class="py-24 bg-gold-50">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="kicker">Hubungi Kami</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 mt-4 tracking-tight">Kontak, Kritik
+                        &amp; Saran</h2>
+                    <div class="divider"></div>
+                </div>
+
+                <div
+                    class="grid grid-cols-1 lg:grid-cols-2 overflow-hidden rounded-3xl border border-gold-200 card-shadow">
+
+                    <!-- KIRI: info kontak + peta -->
+                    <div class="relative overflow-hidden navy-gradient text-white p-8 sm:p-10">
+                        <div
+                            class="absolute -right-24 -bottom-24 h-72 w-72 rounded-full border border-white/10 pointer-events-none">
+                        </div>
+                        <div
+                            class="absolute -right-10 -bottom-10 h-44 w-44 rounded-full border border-white/10 pointer-events-none">
+                        </div>
+
+                        <div class="relative">
+                            <h3 class="text-xl font-extrabold tracking-tight">YAYASAN HARMONI ABADI SEJATI</h3>
+                            <div class="mt-3 h-[3px] w-14 rounded-full bg-gold-300"></div>
+
+                            <ul class="mt-8 space-y-6">
+                                <li class="flex gap-4">
+                                    <span
+                                        class="h-11 w-11 shrink-0 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-gold-300"><i
+                                            class="fas fa-map-marker-alt"></i></span>
+                                    <div>
+                                        <p class="text-[11px] font-bold uppercase tracking-[0.18em] text-gold-200/80">
+                                            Alamat</p>
+                                        <p class="text-sm text-white/90 mt-1 leading-relaxed">Vila Taman Telaga 2 blok
+                                            TJ 11 no 1 Citraland, Surabaya, Jawa Timur 60211</p>
+                                    </div>
+                                </li>
+                                <li class="flex gap-4">
+                                    <span
+                                        class="h-11 w-11 shrink-0 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-gold-300"><i
+                                            class="fas fa-phone"></i></span>
+                                    <div>
+                                        <p class="text-[11px] font-bold uppercase tracking-[0.18em] text-gold-200/80">
+                                            Telepon</p>
+                                        <p class="text-sm text-white/90 mt-1 leading-relaxed">+62 813-5767-0968 / +62
+                                            81234531969</p>
+                                    </div>
+                                </li>
+                                <li class="flex gap-4">
+                                    <span
+                                        class="h-11 w-11 shrink-0 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-gold-300"><i
+                                            class="fas fa-envelope"></i></span>
+                                    <div>
+                                        <p class="text-[11px] font-bold uppercase tracking-[0.18em] text-gold-200/80">
+                                            Email</p>
+                                        <p class="text-sm text-white/90 mt-1 leading-relaxed">
+                                            harmoniabadisejati@gmail.com</p>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <div class="mt-8 rounded-2xl overflow-hidden border border-white/15">
+                                <iframe title="Lokasi Yayasan Harmoni Abadi Sejati"
+                                    src="https://maps.google.com/maps?q=-7.298212,112.652578&z=17&output=embed"
+                                    class="w-full h-44 border-0" loading="lazy" allowfullscreen
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <a href="https://maps.app.goo.gl/mm27RMxRAhqZiWD6A" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="block gold-gradient text-navy-900 font-bold text-xs text-center px-4 py-3 hover:brightness-105 transition">
+                                    <i class="fas fa-location-arrow mr-1.5"></i>Buka di Google Maps</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KANAN: Form Kritik & Saran -->
+                    <div class="bg-white p-8 sm:p-10">
+                        <h3 class="text-xl font-extrabold text-navy-900">Kritik &amp; Saran</h3>
+                        <p class="text-sm text-ink-soft mt-2 mb-6 leading-relaxed">Masukan Anda membantu kami bekerja
+                            lebih baik. Pilih apakah ingin dikirim secara privat kepada pengurus atau ditampilkan untuk
+                            umum.</p>
+
+                        <form id="kontakForm" class="space-y-5">
+
+                            <fieldset>
+                                <legend class="block text-xs font-bold text-navy-900 mb-2">Kirim sebagai</legend>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <label class="ks-opt block cursor-pointer">
+                                        <input type="radio" name="jenis" value="privat" checked class="sr-only">
+                                        <span
+                                            class="ks-card relative flex h-full gap-3 rounded-xl border border-gold-200 bg-gold-50 p-4">
+                                            <span
+                                                class="h-9 w-9 shrink-0 rounded-lg gold-gradient text-navy-900 flex items-center justify-center text-sm"><i
+                                                    class="fas fa-lock"></i></span>
+                                            <span class="min-w-0 pr-5">
+                                                <span class="block text-sm font-bold text-navy-900">Privat</span>
+                                                <span class="block text-xs text-ink-soft mt-0.5 leading-relaxed">Hanya
+                                                    dibaca oleh pengurus yayasan</span>
+                                            </span>
+                                            <i
+                                                class="ks-tick fas fa-circle-check absolute top-3 right-3 text-gold-600"></i>
+                                        </span>
+                                    </label>
+
+                                    <label class="ks-opt block cursor-pointer">
+                                        <input type="radio" name="jenis" value="publik" class="sr-only">
+                                        <span
+                                            class="ks-card relative flex h-full gap-3 rounded-xl border border-gold-200 bg-gold-50 p-4">
+                                            <span
+                                                class="h-9 w-9 shrink-0 rounded-lg gold-gradient text-navy-900 flex items-center justify-center text-sm"><i
+                                                    class="fas fa-globe"></i></span>
+                                            <span class="min-w-0 pr-5">
+                                                <span class="block text-sm font-bold text-navy-900">Publik</span>
+                                                <span class="block text-xs text-ink-soft mt-0.5 leading-relaxed">Tampil
+                                                    sebagai komentar untuk semua pengunjung</span>
+                                            </span>
+                                            <i
+                                                class="ks-tick fas fa-circle-check absolute top-3 right-3 text-gold-600"></i>
+                                        </span>
+                                    </label>
+                                </div>
+                                <p id="ksNote" class="mt-2.5 text-xs text-ink-soft leading-relaxed"></p>
+                            </fieldset>
+
+                            <div>
+                                <label for="ksNama" class="block text-xs font-bold text-navy-900 mb-1.5">Nama
+                                    Lengkap</label>
+                                <input type="text" id="ksNama" name="nama" required maxlength="80"
+                                    class="w-full bg-gold-50 border border-gold-200 rounded-xl px-4 py-3 text-sm text-ink focus:outline-none focus:bg-white focus:border-gold-500 focus:ring-4 focus:ring-gold-400/20 transition">
+                            </div>
+                            <div>
+                                <label for="ksKontak" class="block text-xs font-bold text-navy-900 mb-1.5">Email /
+                                    WhatsApp
+                                    <span class="font-medium text-ink-soft">(opsional, tidak ditampilkan di komentar
+                                        publik)</span></label>
+                                <input type="text" id="ksKontak" name="email" maxlength="120"
+                                    class="w-full bg-gold-50 border border-gold-200 rounded-xl px-4 py-3 text-sm text-ink focus:outline-none focus:bg-white focus:border-gold-500 focus:ring-4 focus:ring-gold-400/20 transition">
+                            </div>
+                            <div>
+                                <div class="flex items-center justify-between gap-3 mb-1.5">
+                                    <label for="ksPesan" class="block text-xs font-bold text-navy-900">Kritik &amp;
+                                        Saran</label>
+                                    <span id="ksCounter" class="text-[11px] font-semibold text-ink-soft tabular-nums">0
+                                        / 9.500</span>
+                                </div>
+                                <textarea id="ksPesan" name="pesan" rows="6" maxlength="9500" required
+                                    aria-describedby="ksCounter"
+                                    placeholder="Tuliskan kritik, saran, atau masukan Anda di sini..."
+                                    class="w-full bg-gold-50 border border-gold-200 rounded-xl px-4 py-3 text-sm text-ink leading-relaxed resize-y focus:outline-none focus:bg-white focus:border-gold-500 focus:ring-4 focus:ring-gold-400/20 transition"></textarea>
+                            </div>
+
+                            <div id="pesanStatus" role="status"
+                                class="hidden bg-gold-50 border border-gold-400 text-gold-800 p-3 rounded-xl text-xs">
+                            </div>
+
+                            <button type="submit"
+                                class="w-full gold-gradient text-navy-900 font-extrabold py-3.5 rounded-xl shadow-lg hover:brightness-105 transition text-sm">
+                                <span id="ksSubmitLabel">Kirim ke Pengurus</span> <i id="ksSubmitIcon"
+                                    class="fas fa-paper-plane ml-1.5 text-xs"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Kritik & Saran Publik -->
+                <div id="komentar-publik" class="mt-16 lg:mt-20">
+                    <div class="flex flex-wrap items-end justify-between gap-3 mb-8">
+                        <div>
+                            <span class="kicker">Suara Pengunjung</span>
+                            <h3 class="text-2xl sm:text-3xl font-extrabold text-navy-900 mt-3 tracking-tight">Kritik
+                                &amp; Saran Publik</h3>
+                        </div>
+                        <p id="komentarCount" class="text-sm font-semibold text-gold-700"></p>
+                    </div>
+
+                    <div id="komentarList" class="grid grid-cols-1 md:grid-cols-2 gap-5 items-start"></div>
+
+                    <div class="mt-8 text-center">
+                        <button type="button" id="komentarMore"
+                            class="hidden gold-gradient text-navy-900 font-bold text-sm px-6 py-3 rounded-xl shadow hover:brightness-105 transition">Tampilkan
+                            lebih banyak</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="gold-bar text-navy-900 py-10 px-4 text-center text-xs font-semibold">
+            <div class="mx-auto mb-5 h-[2px] w-16 rounded-full bg-navy-900"></div>
+            <p>&copy; <span id="currentYear"></span> Yayasan Harmoni Abadi Sejati Surabaya. All Rights Reserved.</p>
+        </footer>
+
+        <!-- MODAL QUOTES KETUA -->
+        <div id="ketuaModal"
+            class="fixed inset-0 z-[60] hidden items-center justify-center bg-navy-900/60 backdrop-blur-sm p-4">
+            <div class="bg-white rounded-3xl max-w-lg w-full p-7 relative shadow-2xl">
+                <button onclick="closeModal()"
+                    class="absolute top-4 right-4 text-ink-soft hover:text-navy-900 font-bold text-xl"><i
+                        class="fas fa-times"></i></button>
+                <h3 class="text-xl font-extrabold text-navy-900 mb-1">Neck Inkiriwang</h3>
+                <p class="text-gold-700 text-xs font-bold uppercase tracking-wide mb-5">Pembina Yayasan Harmoni Abadi
+                    Sejati</p>
+                <div class="bg-gold-50 border-l-4 border-gold-400 rounded-r-2xl p-5 mb-5">
+                    <p class="font-serif italic text-sm text-navy-900 leading-relaxed">"Kehidupan yang bermakna lahir
+                        dari niat baik, kerja nyata, hubungan yang sehat, serta kepedulian sosial yang diwujudkan dalam
+                        tindakan."</p>
+                </div>
+                <button onclick="closeModal()"
+                    class="w-full gold-gradient text-navy-900 font-bold py-3 rounded-xl text-sm hover:brightness-105 transition">Tutup</button>
+            </div>
+        </div>
+
+    </div><!-- /#homePage -->
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // ============================
+        // Database (localStorage)
+        // ============================
+        // Pesan: { id, nama, email, pesan, jenis: 'privat' | 'publik', tanggal }
+        const DB_KEY = 'yayasan_harmoni_db';
+
+        function getDB() {
+            try {
+                const db = localStorage.getItem(DB_KEY);
+                return db ? JSON.parse(db) : null;
+            } catch (e) { return null; }
+        }
+
+        function saveDB(data) {
+            try {
+                localStorage.setItem(DB_KEY, JSON.stringify(data));
+                return true;
+            } catch (e) { return false; }
+        }
+
+        function ensureDB() {
+            let db = getDB();
+            if (!db || typeof db !== 'object') db = { artikels: [], pesan: [] };
+            if (!Array.isArray(db.artikels)) db.artikels = [];
+            if (!Array.isArray(db.pesan)) db.pesan = [];
+            if (!Array.isArray(db.donasi)) db.donasi = [];
+            return db;
+        }
+
+        async function initDB() {
+            let db = getDB();
+            if (!db) {
+                try {
+                    const response = await fetch('database.json');
+                    db = await response.json();
+                } catch (e) {
+                    db = {
+                        artikels: [
+                            { id: 1, judul: "Pelantikan Pengurus dan Pengawas Yayasan Harmoni Abadi Sejati", tanggal: "05 Februari 2026", konten: "Acara pelantikan khidmat di Bima Restaurant Surabaya yang dihadiri oleh anggota Komisi D DPRD Kota Surabaya Dr. Imam Syafii, SH, MH dan Kadinsos Surabaya Mia Santi Dewi, SH, M.Si." },
+                            { id: 2, judul: "Dinsos Surabaya Terima 275 Kain Kafan dari Yayasan", tanggal: "Agustus 2026", konten: "Wujud nyata kepedulian sosial kemasyarakatan dalam penyerahan bantuan kain kafan untuk jenazah warga tanpa keluarga." }
+                        ],
+                        pesan: []
+                    };
+                }
+                if (!db || typeof db !== 'object') db = { artikels: [], pesan: [] };
+                if (!Array.isArray(db.pesan)) db.pesan = [];
+                saveDB(db);
+            }
+            return ensureDB();
+        }
+
+        // ============================
+        // Utility
+        // ============================
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // ============================
+        // Render Artikel (opsional)
+        // ============================
+        function renderArtikels(db) {
+            const container = document.getElementById('artikelContainer');
+            if (!container) return; // tidak ada di layout baru (artikel dikelola lewat WARTA)
+            container.innerHTML = '';
+            db.artikels.forEach(art => {
+                const div = document.createElement('div');
+                div.className = 'bg-white p-6 rounded-3xl card-shadow border border-gold-200';
+                div.innerHTML = `
+                <span class="text-xs font-bold text-gold-700">${escapeHtml(art.tanggal)}</span>
+                <h3 class="font-bold text-navy-900 text-lg mt-1 mb-2">${escapeHtml(art.judul)}</h3>
+                <p class="text-ink-soft text-sm">${escapeHtml(art.konten)}</p>`;
+                container.appendChild(div);
+            });
+        }
+
+        // ============================
+        // Render Admin Messages
+        // ============================
+        function renderAdminMessages(db) {
+            const container = document.getElementById('adminMessages');
+            const summary = document.getElementById('adminSummary');
+            const semua = Array.isArray(db.pesan) ? db.pesan : [];
+
+            if (semua.length === 0) {
+                summary.textContent = '';
+                container.innerHTML = '<p class="text-ink-soft text-sm italic">Belum ada pesan masuk dari pengunjung.</p>';
+                return;
+            }
+
+            const jumlahPublik = semua.filter(p => p.jenis === 'publik').length;
+            summary.textContent = semua.length + ' pesan · ' + (semua.length - jumlahPublik) + ' privat · ' + jumlahPublik + ' publik';
+
+            container.innerHTML = '';
+            semua.map((p, index) => ({ p, index })).reverse().forEach(({ p, index }) => {
+                const publik = p.jenis === 'publik';
+                const div = document.createElement('div');
+                div.className = 'bg-gold-50 p-4 rounded-2xl border border-gold-200';
+                div.innerHTML = `
+                <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-2 text-xs text-ink-soft mb-2">
+                    <div class="min-w-0">
+                        <strong class="text-navy-900">${escapeHtml(p.nama)}</strong>
+                        ${p.email ? '<span class="ml-1">(' + escapeHtml(p.email) + ')</span>' : ''}
+                    </div>
+                    <div class="flex items-center gap-3 shrink-0">
+                        <span class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-bold ${publik ? 'bg-navy-900 text-white' : 'gold-gradient text-navy-900'}">
+                            <i class="fas ${publik ? 'fa-globe' : 'fa-lock'} text-[10px]"></i> ${publik ? 'Publik' : 'Privat'}
+                        </span>
+                        <span>${escapeHtml(p.tanggal)}</span>
+                    </div>
+                </div>
+                <p class="text-ink text-sm whitespace-pre-line [overflow-wrap:anywhere]">${escapeHtml(p.pesan)}</p>
+                <div class="mt-3 text-right">
+                    <button type="button" data-hapus="${index}" class="text-xs font-bold text-navy-700 hover:text-navy-900 hover:underline">
+                        <i class="fas fa-trash-can mr-1"></i>Hapus
+                    </button>
+                </div>`;
+                container.appendChild(div);
+            });
+        }
+
+        document.getElementById('adminMessages').addEventListener('click', function (e) {
+            const btn = e.target.closest('[data-hapus]');
+            if (!btn) return;
+            if (!confirm('Hapus pesan ini? Tindakan ini tidak dapat dibatalkan.')) return;
+            const db = ensureDB();
+            db.pesan.splice(Number(btn.dataset.hapus), 1);
+            saveDB(db);
+            renderAdminMessages(db);
+            renderKomentarPublik(db);
+        });
+
+        // ============================
+        // Page Switching & Modal
+        // ============================
+        function showAdmin() {
+            document.getElementById('homePage').classList.add('hidden');
+            document.getElementById('adminPage').classList.remove('hidden');
+            renderAdminMessages(ensureDB());
+            window.scrollTo(0, 0);
+        }
+
+        function showHome() {
+            document.getElementById('adminPage').classList.add('hidden');
+            document.getElementById('homePage').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function openModal() {
+            const m = document.getElementById('ketuaModal');
+            m.classList.remove('hidden');
+            m.classList.add('flex');
+        }
+
+        function closeModal() {
+            const m = document.getElementById('ketuaModal');
+            m.classList.add('hidden');
+            m.classList.remove('flex');
+        }
+
+        // ============================
+        // Kritik & Saran Publik (daftar komentar)
+        // ============================
+        const KOMENTAR_PER_HALAMAN = 6;
+        let komentarShown = KOMENTAR_PER_HALAMAN;
+
+        function buat(tag, className, text) {
+            const node = document.createElement(tag);
+            if (className) node.className = className;
+            if (text !== undefined) node.textContent = text;
+            return node;
+        }
+
+        function inisial(nama) {
+            const ch = [...String(nama || '').trim()][0];
+            return ch ? ch.toUpperCase() : '?';
+        }
+
+        function formatTanggal(str) {
+            const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(str || ''));
+            if (!m) return String(str || '');
+            const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+            return d.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+        }
+
+        function buatKartuKomentar(p) {
+            const teks = String(p.pesan || '');
+            const card = buat('article', 'bg-white rounded-3xl border border-gold-200 card-shadow p-6');
+
+            const head = buat('div', 'flex items-center gap-3');
+            const avatar = buat('span', 'h-11 w-11 shrink-0 rounded-full gold-gradient text-navy-900 font-extrabold flex items-center justify-center', inisial(p.nama));
+            const meta = buat('div', 'min-w-0');
+            meta.appendChild(buat('p', 'font-bold text-navy-900 text-sm truncate', p.nama || 'Pengunjung'));
+            meta.appendChild(buat('p', 'text-xs text-ink-soft', formatTanggal(p.tanggal)));
+            head.append(avatar, meta);
+
+            const body = buat('p', 'mt-4 text-sm text-ink leading-relaxed whitespace-pre-line [overflow-wrap:anywhere]', teks);
+            card.append(head, body);
+
+            if (teks.length > 320 || teks.split('\n').length > 6) {
+                body.classList.add('line-clamp-6');
+                const btn = buat('button', 'mt-3 text-xs font-bold text-gold-700 hover:underline', 'Baca selengkapnya');
+                btn.type = 'button';
+                btn.setAttribute('aria-expanded', 'false');
+                btn.addEventListener('click', () => {
+                    const terpotong = body.classList.toggle('line-clamp-6');
+                    btn.textContent = terpotong ? 'Baca selengkapnya' : 'Ciutkan';
+                    btn.setAttribute('aria-expanded', String(!terpotong));
+                });
+                card.appendChild(btn);
+            }
+            return card;
+        }
+
+        function renderKomentarPublik(db) {
+            const list = document.getElementById('komentarList');
+            if (!list) return;
+            const count = document.getElementById('komentarCount');
+            const more = document.getElementById('komentarMore');
+
+            const data = (db && Array.isArray(db.pesan) ? db.pesan : [])
+                .filter(p => p && p.jenis === 'publik')
+                .reverse(); // terbaru di atas
+
+            list.innerHTML = '';
+
+            if (data.length === 0) {
+                const kosong = buat('div', 'col-span-full bg-white rounded-3xl border border-dashed border-gold-400 p-10 text-center');
+                kosong.appendChild(buat('p', 'font-bold text-navy-900', 'Belum ada komentar publik'));
+                kosong.appendChild(buat('p', 'text-sm text-ink-soft mt-1', 'Jadilah yang pertama menyampaikan kritik dan saran untuk yayasan.'));
+                list.appendChild(kosong);
+                count.textContent = '';
+                more.classList.add('hidden');
+                return;
+            }
+
+            data.slice(0, komentarShown).forEach(p => list.appendChild(buatKartuKomentar(p)));
+            count.textContent = data.length + ' komentar';
+            more.classList.toggle('hidden', komentarShown >= data.length);
+        }
+
+        document.getElementById('komentarMore').addEventListener('click', function () {
+            komentarShown += KOMENTAR_PER_HALAMAN;
+            renderKomentarPublik(ensureDB());
+        });
+
+        // ============================
+        // Form Kritik & Saran
+        // ============================
+        const KS_MAX = 9500;
+        const KS_NOTES = {
+            privat: 'Pesan Anda hanya dapat dibaca oleh pengurus yayasan dan tidak ditampilkan di website.',
+            publik: 'Nama dan pesan Anda akan tampil untuk semua pengunjung. Email/WhatsApp tidak ditampilkan. Mohon tidak menuliskan data pribadi (alamat, nomor telepon) di komentar publik.'
+        };
+
+        const kontakForm = document.getElementById('kontakForm');
+        const ksPesan = document.getElementById('ksPesan');
+        const ksCounter = document.getElementById('ksCounter');
+        const ksNote = document.getElementById('ksNote');
+        const ksSubmitLabel = document.getElementById('ksSubmitLabel');
+        const ksSubmitIcon = document.getElementById('ksSubmitIcon');
+        const pesanStatus = document.getElementById('pesanStatus');
+        let statusTimer = null;
+
+        function jenisTerpilih() {
+            return kontakForm.querySelector('input[name="jenis"]:checked').value;
+        }
+
+        function updateJenisUI() {
+            const j = jenisTerpilih();
+            ksNote.textContent = KS_NOTES[j];
+            ksSubmitLabel.textContent = j === 'publik' ? 'Kirim Komentar Publik' : 'Kirim ke Pengurus';
+            ksSubmitIcon.className = 'fas ' + (j === 'publik' ? 'fa-comments' : 'fa-paper-plane') + ' ml-1.5 text-xs';
+        }
+
+        function updateCounter() {
+            const n = ksPesan.value.length;
+            const penuh = n >= KS_MAX;
+            const dekat = n >= KS_MAX * 0.9;
+            ksCounter.textContent = n.toLocaleString('id-ID') + ' / ' + KS_MAX.toLocaleString('id-ID') + (penuh ? ' (batas tercapai)' : '');
+            ksCounter.classList.toggle('text-gold-700', dekat);
+            ksCounter.classList.toggle('text-ink-soft', !dekat);
+            ksCounter.classList.toggle('font-bold', penuh);
+        }
+
+        function tampilkanStatus(teks) {
+            pesanStatus.textContent = teks;
+            pesanStatus.classList.remove('hidden');
+            clearTimeout(statusTimer);
+            statusTimer = setTimeout(() => pesanStatus.classList.add('hidden'), 6000);
+        }
+
+        kontakForm.querySelectorAll('input[name="jenis"]').forEach(r => r.addEventListener('change', updateJenisUI));
+        ksPesan.addEventListener('input', updateCounter);
+        updateJenisUI();
+        updateCounter();
+
+        kontakForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const form = e.target;
+            const nama = form.nama.value.trim();
+            const kontak = form.email.value.trim();
+            const pesan = form.pesan.value.trim();
+            const jenis = jenisTerpilih();
+
+            if (!nama || !pesan) {
+                tampilkanStatus('Nama dan kritik & saran wajib diisi.');
+                return;
+            }
+            if (pesan.length > KS_MAX) {
+                tampilkanStatus('Kritik & saran maksimal ' + KS_MAX.toLocaleString('id-ID') + ' karakter.');
+                return;
+            }
+
+            const db = ensureDB();
+            const now = new Date();
+            const tanggal = now.getFullYear() + '-' +
+                String(now.getMonth() + 1).padStart(2, '0') + '-' +
+                String(now.getDate()).padStart(2, '0') + ' ' +
+                String(now.getHours()).padStart(2, '0') + ':' +
+                String(now.getMinutes()).padStart(2, '0') + ':' +
+                String(now.getSeconds()).padStart(2, '0');
+
+            db.pesan.push({ id: Date.now(), nama: nama, email: kontak, pesan: pesan, jenis: jenis, tanggal: tanggal });
+
+            if (!saveDB(db)) {
+                tampilkanStatus('Maaf, pesan gagal disimpan. Pastikan penyimpanan browser Anda aktif, lalu coba lagi.');
+                return;
+            }
+
+            tampilkanStatus(jenis === 'publik'
+                ? 'Terima kasih! Komentar Anda sudah tampil di daftar Kritik & Saran Publik.'
+                : 'Terima kasih, kritik & saran Anda telah dikirim secara privat kepada pengurus yayasan.');
+
+            form.reset();
+            updateCounter();
+            updateJenisUI();
+
+            if (jenis === 'publik') {
+                komentarShown = Math.max(komentarShown, KOMENTAR_PER_HALAMAN);
+                renderKomentarPublik(db);
+            }
+        });
+
+        // ============================
+        // Helper donasi (kode yang sama dipakai di admin.html)
+        // ============================
+        function wibParts(iso) {
+            const p = {};
+            new Intl.DateTimeFormat('id-ID', { timeZone: 'Asia/Jakarta', day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })
+                .formatToParts(new Date(iso)).forEach(x => p[x.type] = x.value);
+            return { tgl: `${p.day} ${p.month} ${p.year}`, jam: `${p.hour}:${p.minute}` };
+        }
+        const wib = iso => { const q = wibParts(iso); return `${q.tgl}, ${q.jam} WIB`; };
+
+        function chartDonasi(list) {
+            const pts = list.filter(d => d.status === 'confirmed' && d.konfirmasiAt).sort((a, b) => new Date(a.konfirmasiAt) - new Date(b.konfirmasiAt));
+            if (!pts.length) return '';
+            let s = 0; const D = pts.map(d => ({ t: d.konfirmasiAt, v: (s += (+d.nominal || 0)) }));
+            const W = 720, H = 340, L = 70, R = 28, T = 20, B = 74, max = s || 1, n = D.length;
+            const X = i => n === 1 ? (L + W - R) / 2 : L + i * (W - L - R) / (n - 1), Y = v => T + (H - T - B) * (1 - v / max);
+            const sh = v => v >= 1e6 ? (v / 1e6).toFixed(v % 1e6 ? 1 : 0).replace('.', ',') + ' jt' : v >= 1e3 ? Math.round(v / 1e3) + ' rb' : String(v);
+            const line = D.map((d, i) => (i ? 'L' : 'M') + X(i).toFixed(1) + ' ' + Y(d.v).toFixed(1)).join(' ');
+            const area = line + ` L${X(n - 1).toFixed(1)} ${H - B} L${X(0).toFixed(1)} ${H - B} Z`;
+            const grid = [0, .25, .5, .75, 1].map(f => { const v = max * f, y = Y(v); return `<line x1="${L}" x2="${W - R}" y1="${y}" y2="${y}" stroke="#F5E2A0" stroke-dasharray="4 4"/><text x="${L - 8}" y="${y + 4}" text-anchor="end" font-size="11" fill="#6B6457">${sh(Math.round(v))}</text>` }).join('');
+            const step = Math.ceil(n / 6);
+            const lab = D.map((d, i) => { if (i % step && i !== n - 1) return ''; const q = wibParts(d.t); return `<text x="${X(i)}" y="${H - B + 20}" text-anchor="middle" font-size="11" font-weight="700" fill="#14233F">${q.tgl}</text><text x="${X(i)}" y="${H - B + 35}" text-anchor="middle" font-size="11" fill="#6B6457">${q.jam} WIB</text>` }).join('');
+            const dots = D.map((d, i) => `<circle cx="${X(i)}" cy="${Y(d.v)}" r="5" fill="#fff" stroke="#C99C2B" stroke-width="3"><title>${wib(d.t)} - total Rp ${new Intl.NumberFormat('id-ID').format(d.v)}</title></circle>`).join('');
+            return `<svg viewBox="0 0 ${W} ${H}" class="w-full h-auto" role="img" aria-label="Grafik total donasi terkumpul"><defs><linearGradient id="gA" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#DDB443" stop-opacity=".45"/><stop offset="1" stop-color="#DDB443" stop-opacity="0"/></linearGradient></defs>${grid}<path d="${area}" fill="url(#gA)"/><path d="${line}" fill="none" stroke="#C99C2B" stroke-width="3" stroke-linejoin="round"/>${dots}${lab}</svg>`;
+        }
+
+        // ===== Total donasi (hanya tampil) =====
+        const rp = n => 'Rp ' + new Intl.NumberFormat('id-ID').format(n || 0);
+        function renderTransparansi() {
+            const db = ensureDB();
+            const ok = db.donasi.filter(d => d.status === 'confirmed');
+            const total = ok.reduce((s, d) => s + (+d.nominal || 0), 0);
+            document.getElementById('tpTotal').textContent = rp(total);
+            document.getElementById('tpCount').textContent = ok.length + ' donasi terverifikasi';
+            const last = ok.map(d => d.konfirmasiAt).filter(Boolean).sort().pop();
+            document.getElementById('tpUpdate').textContent = last ? 'Pembaruan terakhir: ' + wib(last) : 'Belum ada donasi terverifikasi';
+            document.getElementById('tpChart').innerHTML = chartDonasi(db.donasi) ||
+                '<p class="border border-dashed border-gold-300 rounded-2xl p-8 text-center text-sm text-ink-soft italic">Grafik akan tampil setelah ada donasi yang terverifikasi.</p>';
+        }
+        function tickClock() {
+            const t = new Date(), q = wibParts(t.toISOString());
+            const s = new Intl.DateTimeFormat('id-ID', { timeZone: 'Asia/Jakarta', second: '2-digit' }).format(t).padStart(2, '0');
+            document.getElementById('tpNow').textContent = q.tgl + ', ' + q.jam + ':' + s + ' WIB';
+        }
+        setInterval(tickClock, 1000); tickClock();
+        window.addEventListener('storage', e => { if (e.key === DB_KEY) { renderTransparansi(); renderKomentarPublik(ensureDB()); } });
+
+        // ===== Salin rekening =====
+        document.getElementById('copyRek').addEventListener('click', function () {
+            const b = this.querySelector('span');
+            (navigator.clipboard ? navigator.clipboard.writeText('8294888800') : Promise.reject())
+                .then(() => b.textContent = 'Tersalin!').catch(() => b.textContent = 'Salin manual: 8294888800');
+            setTimeout(() => b.textContent = 'Salin nomor rekening', 2000);
+        });
+
+        // ===== Form donasi =====
+        function bacaGambar(file) {
+            return new Promise((ok, no) => {
+                const fr = new FileReader();
+                fr.onerror = no;
+                fr.onload = () => {
+                    const img = new Image();
+                    img.onerror = no;
+                    img.onload = () => {
+                        const r = Math.min(1, 1100 / Math.max(img.width, img.height));
+                        const c = document.createElement('canvas');
+                        c.width = Math.round(img.width * r); c.height = Math.round(img.height * r);
+                        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+                        ok({ data: c.toDataURL('image/jpeg', .72), w: img.width, h: img.height });
+                    };
+                    img.src = fr.result;
+                };
+                fr.readAsDataURL(file);
+            });
+        }
+        async function hashFile(buf) {
+            if (!(window.crypto && crypto.subtle)) return '';
+            const h = await crypto.subtle.digest('SHA-256', buf);
+            return Array.from(new Uint8Array(h)).map(x => x.toString(16).padStart(2, '0')).join('');
+        }
+        // Pemeriksaan AWAL di browser. Bukan deteksi AI yang pasti.
+        async function analisisBukti(file, dim, hash, db) {
+            const buf = await file.arrayBuffer();
+            const txt = new TextDecoder('latin1').decode(new Uint8Array(buf).slice(0, 300000));
+            const cat = []; let skor = 0;
+            if (/(stable diffusion|midjourney|dall-?e|firefly|comfyui|automatic1111|novelai|leonardo\.ai|openai|c2pa|jumbf|"?parameters"?\s*[:\x00]\s*[^\x00]*steps)/i.test(txt)) { skor += 60; cat.push('Metadata memuat jejak alat pembuat gambar AI atau Content Credentials.'); }
+            if (/(photoshop|gimp|canva|pixlr|snapseed|picsart|lightroom|affinity)/i.test(txt)) { skor += 30; cat.push('Metadata menunjukkan gambar pernah diolah di aplikasi editor.'); }
+            if (Math.min(dim.w, dim.h) < 300) { skor += 15; cat.push('Resolusi gambar sangat kecil.'); }
+            if (file.lastModified && Date.now() - file.lastModified > 30 * 864e5) { skor += 10; cat.push('File terakhir diubah lebih dari 30 hari lalu.'); }
+            if (hash) {
+                const dup = db.donasi.find(d => d.hash === hash);
+                if (dup) { skor += 50; cat.push('Bukti identik dengan donasi dari "' + dup.nama + '".'); }
+            }
+            if (!cat.length) cat.push('Tidak ada indikasi mencurigakan dari pemeriksaan otomatis.');
+            skor = Math.min(100, skor);
+            return { skor, level: skor >= 50 ? 'Tinggi' : skor >= 20 ? 'Sedang' : 'Rendah', catatan: cat };
+        }
+
+        document.getElementById('donasiForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const f = e.target, btn = document.getElementById('donasiBtn'), st = document.getElementById('donasiStatus');
+            const say = (m, ok) => { st.textContent = m; st.className = 'p-3 rounded-xl text-xs border ' + (ok ? 'bg-emerald-50 border-emerald-300 text-emerald-800' : 'bg-red-50 border-red-200 text-red-700'); };
+            const clean = v => v.trim().replace(/[<>]/g, '');
+            const nominal = Math.round(Number(f.nominal.value));
+            const file = f.bukti.files[0];
+            if (!nominal || nominal < 10000) return say('Nominal minimal Rp 10.000.', false);
+            if (!file) return say('Bukti transfer wajib diunggah.', false);
+            if (!/^image\/(jpeg|png|webp)$/.test(file.type)) return say('Bukti harus berupa gambar JPG, PNG, atau WEBP.', false);
+            if (file.size > 10 * 1024 * 1024) return say('Ukuran gambar maksimal 10 MB.', false);
+            btn.disabled = true; btn.classList.add('opacity-60');
+            try {
+                const db = ensureDB();
+                const img = await bacaGambar(file);
+                const hash = await hashFile(await file.arrayBuffer());
+                const analisis = await analisisBukti(file, img, hash, db);
+                db.donasi.push({
+                    id: Date.now(), nama: clean(f.nama.value), telp: clean(f.telp.value),
+                    rekening: clean(f.rekening.value), atasNama: clean(f.atasNama.value),
+                    nominal, bukti: img.data, hash, analisis,
+                    metode: 'Transfer Bank BCA', status: 'pending',
+                    tanggal: new Date().toISOString(), konfirmasiAt: null
+                });
+                if (!saveDB(db)) throw new Error('quota');
+                f.reset();
+                say('Terima kasih! Donasi Anda sudah kami terima dan menunggu pengecekan pengurus. Total donasi akan bertambah setelah dikonfirmasi.', true);
+            } catch (err) {
+                say('Gagal menyimpan. Coba gambar yang lebih kecil atau pastikan penyimpanan browser aktif.', false);
+            }
+            btn.disabled = false; btn.classList.remove('opacity-60');
+        });
+
+        // ===== Lompat ke bagian yang baru diubah admin =====
+        window.addEventListener('load', () => {
+            if (!location.hash) return;
+            setTimeout(() => {
+                let el = null;
+                try { el = document.querySelector(location.hash); } catch (e) { }
+                if (el) { el.scrollIntoView(); el.classList.add('sec-flash'); }
+            }, 700);
+        });
+
+        // ============================
+        // Init
+        // ============================
+        initDB().then(() => {
+            const db = ensureDB();
+            renderArtikels(db);
+            renderKomentarPublik(db);
+            renderTransparansi();
+        });
+    </script>
+</body>
+
+</html>

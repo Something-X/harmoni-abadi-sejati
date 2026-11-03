@@ -695,16 +695,14 @@
 
             <div class="hero-overlay absolute inset-0 z-10 pointer-events-none"></div>
 
-            <div class="relative max-w-5xl mx-auto text-center px-4">
-                <div class="relative z-40">
-                    <div class="mt-32 flex flex-wrap justify-center gap-4">
-                        <a href="#tentang"
-                            class="bg-[#C9A227] text-navy-900 px-8 py-3.5 rounded-xl font-bold shadow-lg hover:bg-[#B58F1E] transition">Kenali
-                            Kami Lebih Dekat</a>
-                        <a href="#kontak"
-                            class="bg-white/70 backdrop-blur border border-navy-900/20 text-navy-900 px-8 py-3.5 rounded-xl font-bold hover:bg-white transition">Hubungi
-                            Pengurus</a>
-                    </div>
+            <div class="absolute bottom-20 left-0 right-0 z-40 text-center px-4">
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#tentang"
+                        class="bg-[#C9A227] text-navy-900 px-8 py-3.5 rounded-xl font-bold shadow-lg hover:bg-[#B58F1E] transition">Kenali
+                        Kami Lebih Dekat</a>
+                    <a href="#kontak"
+                        class="bg-white/70 backdrop-blur border border-navy-900/20 text-navy-900 px-8 py-3.5 rounded-xl font-bold hover:bg-white transition">Hubungi
+                        Pengurus</a>
                 </div>
             </div>
 
@@ -738,36 +736,7 @@
                 let current = 0;
                 let timer = null;
 
-                const title = hero.querySelector('.hero-title');
-                title.setAttribute('aria-label', 'Yayasan Harmoni Abadi Sejati');
-                let charCount = 0;
-
-                title.querySelectorAll('span').forEach(line => {
-                    const text = line.textContent.replace(/\s+/g, ' ').trim();
-                    line.textContent = '';
-                    text.split(' ').forEach((word, wi, arr) => {
-                        const w = document.createElement('span');
-                        w.className = 'char-word';
-                        w.setAttribute('aria-hidden', 'true');
-                        [...word].forEach(ch => {
-                            const s = document.createElement('span');
-                            s.className = 'char';
-                            s.textContent = ch;
-                            s.style.setProperty('--d', (charCount * 0.12) + 's');
-                            s.style.setProperty('--i', charCount);
-                            w.appendChild(s);
-                            charCount++;
-                        });
-                        line.appendChild(w);
-                        if (wi < arr.length - 1) line.appendChild(document.createTextNode(' '));
-                    });
-                });
-
-                function replayTitle() {
-                    title.classList.remove('is-entering');
-                    void title.offsetWidth;
-                    title.classList.add('is-entering');
-                }
+                function replayTitle() { /* no-op: hero-title tidak ada */ }
 
                 const dots = Array.from(slides, (_, i) => {
                     const b = document.createElement('button');

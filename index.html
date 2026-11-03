@@ -126,6 +126,17 @@
             opacity: 0;
         }
 
+        .hero-caption {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out;
+        }
+
+        #home.hero-depth .hero-caption {
+            opacity: 0;
+            transform: translateY(12px);
+        }
+
         .hero-cutout {
             opacity: 0;
             pointer-events: none;
@@ -688,12 +699,28 @@
 
             <img src="img/img2.jpeg" alt=""
                 class="hero-slide absolute inset-0 w-full h-full object-cover object-top z-0">
+            Yayasan Harmoni<br>
+            <span class="text-[#B58F1E]">Sejati</span>
             <img src="img/img3.jpeg" alt=""
                 class="hero-slide absolute inset-0 w-full h-full object-cover object-top z-0">
             <img src="img/img4.jpeg" alt=""
                 class="hero-slide absolute inset-0 w-full h-full object-cover object-top z-0">
 
             <div class="hero-overlay absolute inset-0 z-10 pointer-events-none"></div>
+
+            <!-- Teks hanya untuk slide img2/3/4 -->
+            <div
+                class="hero-caption absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4 pointer-events-none">
+                <p class="text-xs sm:text-sm font-bold tracking-[0.35em] uppercase text-navy-900 mb-3 drop-shadow">
+                    Membangun Kebaikan Bersama</p>
+                <h1
+                    class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-navy-900 leading-tight tracking-tight drop-shadow-lg">
+                    Yayasan Harmoni<br>
+                    <span class="text-[#B58F1E]">Abadi Sejati</span>
+                </h1>
+                <p class="mt-4 text-sm sm:text-base text-navy-900/80 font-medium max-w-md drop-shadow">Surabaya, Jawa
+                    Timur</p>
+            </div>
 
             <div class="absolute bottom-20 left-0 right-0 z-40 text-center px-4">
                 <div class="flex flex-wrap justify-center gap-4">

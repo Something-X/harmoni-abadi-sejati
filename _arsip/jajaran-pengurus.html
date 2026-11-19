@@ -1,0 +1,344 @@
+<!-- ============ JAJARAN PENGURUS (CAROUSEL) ============ -->
+<style>
+    /* Ornamen lingkaran: posisi diubah lewat JS tiap slide, CSS ini yang membuatnya bergerak halus */
+    #pengurus-panel [data-orb] {
+        position: absolute; border-radius: 9999px; pointer-events: none;
+        transform: translate(-50%, -50%);
+        transition: left 1.6s cubic-bezier(.65, 0, .35, 1), top 1.6s cubic-bezier(.65, 0, .35, 1),
+            width 1.6s cubic-bezier(.65, 0, .35, 1), height 1.6s cubic-bezier(.65, 0, .35, 1),
+            background-color .9s, border-color .9s;
+        animation: orb-float 9s ease-in-out infinite;
+    }
+    #pengurus-panel [data-orb="a"] { background: rgba(255, 255, 255, .30); }
+    #pengurus-panel [data-orb="b"] { border: 1px solid rgba(255, 255, 255, .6); animation-delay: -3s; }
+    #pengurus-panel [data-orb="c"] { background: rgba(255, 255, 255, .5); animation-delay: -6s; animation-duration: 6s; }
+    @keyframes orb-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 16px; } }
+
+    /* Lapisan navy: muncul perlahan saat slide pengawas aktif */
+    #pengurus-panel [data-navy] {
+        background: linear-gradient(135deg, #2B4673 0%, #1E3357 55%, #14233F 100%);
+        opacity: 0; transition: opacity .9s ease;
+    }
+    #pengurus-panel[data-theme="navy"] [data-navy] { opacity: 1; }
+    #pengurus-panel[data-theme="navy"] [data-orb="a"] { background: rgba(221, 180, 67, .16); }
+    #pengurus-panel[data-theme="navy"] [data-orb="b"] { border-color: rgba(237, 206, 110, .55); }
+    #pengurus-panel[data-theme="navy"] [data-orb="c"] { background: rgba(237, 206, 110, .45); }
+    #pengurus-panel[data-theme="navy"] [data-counter] { color: rgba(255, 255, 255, .75); }
+    #pengurus-panel [data-dots] button { transition: width .3s, background-color .9s; }
+    #pengurus-panel[data-theme="navy"] [data-dots] button { background: rgba(255, 255, 255, .35); }
+    #pengurus-panel[data-theme="navy"] [data-dots] button[aria-selected="true"] { background: #DDB443; }
+
+    /* Isi slide masuk sedikit demi sedikit saat slide aktif */
+    @keyframes slide-pop { from { opacity: 0; transform: scale(.94) rotate(-1.5deg); } to { opacity: 1; transform: none; } }
+    @keyframes slide-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+    #pengurus-carousel [data-active="true"] .grid > img { animation: slide-pop .9s cubic-bezier(.22, 1, .36, 1) both; }
+    #pengurus-carousel [data-active="true"] .grid > div { animation: slide-rise .8s .12s cubic-bezier(.22, 1, .36, 1) both; }
+    @media (prefers-reduced-motion: reduce) {
+        #pengurus-panel [data-orb], #pengurus-carousel [data-active="true"] .grid > * { animation: none; transition: none; }
+    }
+</style>
+
+<section id="pimpinan" class="px-4 sm:px-6 lg:px-8 pb-24 bg-white">
+<div id="pengurus-panel" class="relative overflow-hidden max-w-7xl mx-auto rounded-[2rem] gold-panel card-shadow px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
+
+    <div data-navy class="absolute inset-0 pointer-events-none"></div>
+    <div data-orb="a" style="width:288px;height:288px"></div>
+    <div data-orb="b" style="width:224px;height:224px"></div>
+    <div data-orb="c" style="width:56px;height:56px"></div>
+
+    <div id="pengurus-carousel" class="relative" role="region" aria-roledescription="carousel"
+        aria-label="Jajaran pengurus Yayasan Harmoni Abadi Sejati" tabindex="0">
+
+        <div class="overflow-hidden">
+            <div data-track class="flex items-stretch transition-transform duration-700 ease-out motion-reduce:transition-none">
+
+                <!-- 1. PEMBINA: Neck Inkiriwang -->
+                <article class="w-full shrink-0 p-2" role="group" aria-roledescription="slide">
+                    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,26rem)_1fr] gap-10 lg:gap-16 items-center h-full">
+                        <img src="img/ketua.jpeg" alt="Neck Inkiriwang - Pembina Yayasan"
+                            class="w-full max-w-sm mx-auto aspect-square object-cover object-top rounded-3xl card-shadow bg-gold-100 ring-8 ring-white">
+                        <div>
+                            <span class="inline-flex items-center gap-2 bg-navy-900 text-white text-xs font-bold uppercase tracking-[0.18em] px-4 py-2 rounded-full">
+                                <i class="fas fa-star text-gold-300 text-[10px]"></i> Pembina Yayasan
+                            </span>
+                            <h3 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 mt-4 tracking-tight leading-tight">Neck Inkiriwang</h3>
+                            <p class="text-navy-800 font-semibold mt-2">Pembina Yayasan Harmoni Abadi Sejati</p>
+                            <blockquote class="relative mt-7 bg-white text-navy-900 rounded-2xl pl-8 pr-16 py-7 font-serif italic text-lg leading-relaxed shadow-lg border-l-4 border-navy-900">
+                                &ldquo;Kehidupan yang bermakna lahir dari niat baik, kerja nyata, hubungan yang sehat, serta kepedulian sosial yang diwujudkan dalam tindakan.&rdquo;
+                                <i class="fas fa-quote-right absolute top-6 right-6 text-3xl text-gold-500"></i>
+                            </blockquote>
+                            <p class="mt-6 text-navy-900/85 leading-relaxed">
+                                Di bawah bimbingan Neck Inkiriwang, yayasan berkomitmen untuk terus merencanakan program kemanusiaan dengan bijaksana, integritas tinggi, serta memperluas kolaborasi dengan pemerintah maupun instansi swasta demi kesejahteraan masyarakat Surabaya dan Jawa Timur.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 2. PEMBINA -->
+                <article class="w-full shrink-0 p-2" role="group" aria-roledescription="slide">
+                    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,26rem)_1fr] gap-10 lg:gap-16 items-center h-full">
+                        <img src="img/Pembina yayasan 2.jpeg" loading="lazy" alt="Prof. Dr. Ir. Sutanto Hidayat Mamfi, S.H. - Pembina Yayasan"
+                            class="w-full max-w-sm mx-auto aspect-square object-cover object-top rounded-3xl card-shadow bg-gold-100 ring-8 ring-white">
+                        <div>
+                            <span class="inline-flex items-center gap-2 bg-navy-900 text-white text-xs font-bold uppercase tracking-[0.18em] px-4 py-2 rounded-full">
+                                <i class="fas fa-star text-gold-300 text-[10px]"></i> Pembina Yayasan
+                            </span>
+                            <h3 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 mt-4 tracking-tight leading-tight">Prof. dr. Ir. Sutanto Hidayat Mamfi, S.H.</h3>
+                            <p class="text-navy-800 font-semibold mt-2">Pembina Yayasan Harmoni Abadi Sejati</p>
+                            <p class="mt-6 text-navy-900/85 leading-relaxed max-w-xl">
+                                Memberikan arah, pertimbangan, dan pengawasan agar seluruh program yayasan berjalan sesuai tujuan dan nilai-nilai yang dipegang bersama.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 3. KETUA -->
+                <article class="w-full shrink-0 p-2" role="group" aria-roledescription="slide">
+                    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,26rem)_1fr] gap-10 lg:gap-16 items-center h-full">
+                        <img src="img/ketua1.jpeg" loading="lazy" alt="drg. Riany Alim, Sp.K.G. - Ketua Yayasan"
+                            class="w-full max-w-sm mx-auto aspect-square object-cover object-top rounded-3xl card-shadow bg-gold-100 ring-8 ring-white">
+                        <div>
+                            <span class="inline-flex items-center gap-2 bg-navy-900 text-white text-xs font-bold uppercase tracking-[0.18em] px-4 py-2 rounded-full">
+                                <i class="fas fa-star text-gold-300 text-[10px]"></i> Ketua Yayasan
+                            </span>
+                            <h3 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 mt-4 tracking-tight leading-tight">drg. Riany Alim, Sp.K.G.</h3>
+                            <p class="text-navy-800 font-semibold mt-2">Ketua Yayasan Harmoni Abadi Sejati</p>
+                            <p class="mt-6 text-navy-900/85 leading-relaxed max-w-xl">
+                                Memimpin pelaksanaan program dan kegiatan yayasan sehari-hari, serta menjaga kolaborasi dengan pemerintah, instansi swasta, dan masyarakat.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 4. WAKIL KETUA -->
+                <article class="w-full shrink-0 p-2" role="group" aria-roledescription="slide">
+                    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,26rem)_1fr] gap-10 lg:gap-16 items-center h-full">
+                        <img src="img/wakil.jpeg" loading="lazy" alt="Wadi Rajasa Kusuma - Wakil Ketua Yayasan"
+                            class="w-full max-w-sm mx-auto aspect-square object-cover object-top rounded-3xl card-shadow bg-gold-100 ring-8 ring-white">
+                        <div>
+                            <span class="inline-flex items-center gap-2 bg-navy-900 text-white text-xs font-bold uppercase tracking-[0.18em] px-4 py-2 rounded-full">
+                                <i class="fas fa-star text-gold-300 text-[10px]"></i> Wakil Ketua Yayasan
+                            </span>
+                            <h3 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 mt-4 tracking-tight leading-tight">Wadi Rajasa Kusuma</h3>
+                            <p class="text-navy-800 font-semibold mt-2">Wakil Ketua Yayasan Harmoni Abadi Sejati</p>
+                            <p class="mt-6 text-navy-900/85 leading-relaxed max-w-xl">
+                                Mendampingi Ketua dalam menjalankan program dan kegiatan yayasan, serta mewakili Ketua bila berhalangan.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 5. SEKRETARIS -->
+                <article class="w-full shrink-0 p-2" role="group" aria-roledescription="slide">
+                    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,26rem)_1fr] gap-10 lg:gap-16 items-center h-full">
+                        <img src="img/sekertaris.jpeg" loading="lazy" alt="Dr. Sukaryantho, M.Si. - Sekretaris Yayasan"
+                            class="w-full max-w-sm mx-auto aspect-square object-cover object-top rounded-3xl card-shadow bg-gold-100 ring-8 ring-white">
+                        <div>
+                            <span class="inline-flex items-center gap-2 bg-navy-900 text-white text-xs font-bold uppercase tracking-[0.18em] px-4 py-2 rounded-full">
+                                <i class="fas fa-star text-gold-300 text-[10px]"></i> Sekretaris
+                            </span>
+                            <h3 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 mt-4 tracking-tight leading-tight">Dr. Sukaryantho, M.Si.</h3>
+                            <p class="text-navy-800 font-semibold mt-2">Sekretaris Yayasan Harmoni Abadi Sejati</p>
+                            <p class="mt-6 text-navy-900/85 leading-relaxed max-w-xl">
+                                Mengelola administrasi, dokumentasi, dan korespondensi yayasan agar seluruh kegiatan tercatat dengan tertib.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 6. BENDAHARA 1 -->
+                <article class="w-full shrink-0 p-2" role="group" aria-roledescription="slide">
+                    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,26rem)_1fr] gap-10 lg:gap-16 items-center h-full">
+                        <img src="img/bendahara1.jpeg" loading="lazy" alt="Untjahjono Budiman - Bendahara 1 Yayasan"
+                            class="w-full max-w-sm mx-auto aspect-square object-cover object-top rounded-3xl card-shadow bg-gold-100 ring-8 ring-white">
+                        <div>
+                            <span class="inline-flex items-center gap-2 bg-navy-900 text-white text-xs font-bold uppercase tracking-[0.18em] px-4 py-2 rounded-full">
+                                <i class="fas fa-star text-gold-300 text-[10px]"></i> Bendahara 1
+                            </span>
+                            <h3 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 mt-4 tracking-tight leading-tight">Untjahjono Budiman</h3>
+                            <p class="text-navy-800 font-semibold mt-2">Bendahara 1 Yayasan Harmoni Abadi Sejati</p>
+                            <p class="mt-6 text-navy-900/85 leading-relaxed max-w-xl">
+                                Mengelola keuangan yayasan secara transparan dan akuntabel, termasuk penerimaan dan penyaluran dana program.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 7. BENDAHARA 2 -->
+                <article class="w-full shrink-0 p-2" role="group" aria-roledescription="slide">
+                    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,26rem)_1fr] gap-10 lg:gap-16 items-center h-full">
+                        <img src="img/bendahara 2.jpeg" loading="lazy" alt="Virginia Gunawan - Bendahara 2 Yayasan"
+                            class="w-full max-w-sm mx-auto aspect-square object-cover object-top rounded-3xl card-shadow bg-gold-100 ring-8 ring-white">
+                        <div>
+                            <span class="inline-flex items-center gap-2 bg-navy-900 text-white text-xs font-bold uppercase tracking-[0.18em] px-4 py-2 rounded-full">
+                                <i class="fas fa-star text-gold-300 text-[10px]"></i> Bendahara 2
+                            </span>
+                            <h3 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 mt-4 tracking-tight leading-tight">Virginia Gunawan</h3>
+                            <p class="text-navy-800 font-semibold mt-2">Bendahara 2 Yayasan Harmoni Abadi Sejati</p>
+                            <p class="mt-6 text-navy-900/85 leading-relaxed max-w-xl">
+                                Mendampingi Bendahara 1 dalam pencatatan dan pelaporan keuangan yayasan.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 8. KETUA PENGAWAS (kartu navy) -->
+                <article class="w-full shrink-0 p-2" role="group" aria-roledescription="slide" data-theme="navy">
+                    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,26rem)_1fr] gap-10 lg:gap-16 items-center h-full">
+                        <img src="img/pengawas1.jpeg" loading="lazy" alt="Prof. Dr. drg. Moch. Rubianto, MS - Ketua Pengawas Yayasan"
+                            class="w-full max-w-sm mx-auto aspect-square object-cover object-top rounded-3xl shadow-2xl bg-navy-800 ring-8 ring-gold-400">
+                        <div>
+                            <span class="inline-flex items-center gap-2 bg-gold-400 text-navy-900 text-xs font-bold uppercase tracking-[0.18em] px-4 py-2 rounded-full">
+                                <i class="fas fa-shield-halved text-[10px]"></i> Ketua Pengawas
+                            </span>
+                            <h3 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-4 tracking-tight leading-tight">Prof. Dr. drg. Moch. Rubianto, MS</h3>
+                            <p class="text-gold-200 font-semibold mt-2">Ketua Pengawas Yayasan Harmoni Abadi Sejati</p>
+                            <p class="mt-6 text-white/85 leading-relaxed max-w-xl">
+                                Memimpin fungsi pengawasan terhadap kepengurusan dan pelaksanaan program yayasan agar tetap sesuai dengan anggaran dasar, tujuan, dan prinsip akuntabilitas.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 9. ANGGOTA PENGAWAS (kartu navy) -->
+                <article class="w-full shrink-0 p-2" role="group" aria-roledescription="slide" data-theme="navy">
+                    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,26rem)_1fr] gap-10 lg:gap-16 items-center h-full">
+                        <img src="img/pengawas2.jpeg" loading="lazy" alt="Siono Sugiarto - Anggota Pengawas Yayasan"
+                            class="w-full max-w-sm mx-auto aspect-square object-cover object-top rounded-3xl shadow-2xl bg-navy-800 ring-8 ring-gold-400">
+                        <div>
+                            <span class="inline-flex items-center gap-2 bg-gold-400 text-navy-900 text-xs font-bold uppercase tracking-[0.18em] px-4 py-2 rounded-full">
+                                <i class="fas fa-shield-halved text-[10px]"></i> Anggota Pengawas
+                            </span>
+                            <h3 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-4 tracking-tight leading-tight">Siono Sugiarto</h3>
+                            <p class="text-gold-200 font-semibold mt-2">Anggota Pengawas Yayasan Harmoni Abadi Sejati</p>
+                            <p class="mt-6 text-white/85 leading-relaxed max-w-xl">
+                                Mendampingi Ketua Pengawas dalam mengawasi jalannya kepengurusan dan kegiatan yayasan, serta memberi masukan demi tata kelola yang tertib dan transparan.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+
+        <div class="relative mt-8 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <div data-dots class="flex items-center gap-2" role="tablist" aria-label="Pilih pengurus"></div>
+                <span data-counter class="text-sm font-semibold text-navy-900/70 tabular-nums" aria-live="polite"></span>
+            </div>
+            <div class="flex items-center gap-3">
+                <button type="button" data-prev aria-label="Pengurus sebelumnya"
+                    class="h-12 w-12 rounded-full bg-white text-navy-900 shadow-lg grid place-items-center hover:bg-navy-900 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy-900 transition-colors">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button type="button" data-next aria-label="Pengurus berikutnya"
+                    class="h-12 w-12 rounded-full bg-white text-navy-900 shadow-lg grid place-items-center hover:bg-navy-900 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy-900 transition-colors">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<script>
+    (function () {
+        var root = document.getElementById('pengurus-carousel');
+        if (!root) return;
+        var panel = document.getElementById('pengurus-panel');
+        var track = root.querySelector('[data-track]');
+        var slides = Array.prototype.slice.call(track.children);
+        var dotsWrap = root.querySelector('[data-dots]');
+        var counter = root.querySelector('[data-counter]');
+        var orbs = Array.prototype.slice.call(panel.querySelectorAll('[data-orb]'));
+        var total = slides.length;
+        var index = 0;
+        var timer = null;
+        var AUTOPLAY_MS = 7000;
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Ornamen mengorbit: tiap slide bergeser 40° (9 slide x 40° = 360°, jadi putarannya menyambung mulus).
+        // r = jarak orbit (0-1 dari lebar/tinggi kartu), a0 = sudut awal, s = ukuran dasar (px).
+        var ORB = [
+            { r: [0.60, 0.72], a0: -45, s: 288 },
+            { r: [0.55, 0.70], a0: 135, s: 224 },
+            { r: [0.40, 0.50], a0: 45, s: 56 }
+        ];
+        var STEP = 40;
+        function moveOrbs(i) {
+            orbs.forEach(function (o, j) {
+                var c = ORB[j], t = (c.a0 + i * STEP) * Math.PI / 180;
+                o.style.left = (50 + c.r[0] * 100 * Math.cos(t)) + '%';
+                o.style.top = (50 + c.r[1] * 100 * Math.sin(t)) + '%';
+                var size = Math.round(c.s * (0.85 + 0.15 * ((i + j) % 3)));
+                o.style.width = o.style.height = size + 'px';
+            });
+        }
+
+        slides.forEach(function (s, i) { s.setAttribute('aria-label', (i + 1) + ' dari ' + total); });
+
+        var dots = slides.map(function (_, i) {
+            var b = document.createElement('button');
+            b.type = 'button';
+            b.setAttribute('role', 'tab');
+            b.setAttribute('aria-label', 'Tampilkan pengurus ' + (i + 1));
+            b.className = 'h-2.5 rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy-900';
+            b.addEventListener('click', function () { go(i); restart(); });
+            dotsWrap.appendChild(b);
+            return b;
+        });
+
+        function go(n) {
+            index = (n + total) % total;
+            track.style.transform = 'translateX(-' + (index * 100) + '%)';
+            slides.forEach(function (s, i) {
+                var active = i === index;
+                s.setAttribute('aria-hidden', active ? 'false' : 'true');
+                s.setAttribute('data-active', active ? 'true' : 'false');
+                if ('inert' in s) s.inert = !active;
+            });
+            dots.forEach(function (d, i) {
+                var active = i === index;
+                d.setAttribute('aria-selected', active ? 'true' : 'false');
+                d.className = d.className.replace(/\b(w-8|w-2\.5|bg-navy-900|bg-navy-900\/30)\b/g, '').replace(/\s+/g, ' ').trim() +
+                    (active ? ' w-8 bg-navy-900' : ' w-2.5 bg-navy-900/30');
+            });
+            counter.textContent = (index + 1) + ' / ' + total;
+            panel.setAttribute('data-theme', slides[index].getAttribute('data-theme') || 'gold');
+            moveOrbs(index);
+        }
+
+        function start() {
+            if (reduceMotion || timer) return;
+            timer = setInterval(function () { go(index + 1); }, AUTOPLAY_MS);
+        }
+        function stop() { clearInterval(timer); timer = null; }
+        function restart() { stop(); start(); }
+
+        root.querySelector('[data-prev]').addEventListener('click', function () { go(index - 1); restart(); });
+        root.querySelector('[data-next]').addEventListener('click', function () { go(index + 1); restart(); });
+
+        root.addEventListener('mouseenter', stop);
+        root.addEventListener('mouseleave', start);
+        root.addEventListener('focusin', stop);
+        root.addEventListener('focusout', start);
+
+        root.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowLeft') { go(index - 1); }
+            if (e.key === 'ArrowRight') { go(index + 1); }
+        });
+
+        var startX = null;
+        root.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; stop(); }, { passive: true });
+        root.addEventListener('touchend', function (e) {
+            if (startX === null) return;
+            var dx = e.changedTouches[0].clientX - startX;
+            if (Math.abs(dx) > 50) go(index + (dx < 0 ? 1 : -1));
+            startX = null;
+            start();
+        }, { passive: true });
+
+        go(0);
+        start();
+    })();
+</script>

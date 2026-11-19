@@ -1,0 +1,161 @@
+<!-- HERO SECTION (CAROUSEL) -->
+<style>
+    /* Transisi antar gambar */
+    .hero-slide {
+        opacity: 0;
+        transition: opacity 1.2s ease-in-out;
+    }
+
+    .hero-slide.is-active {
+        opacity: 0.3; /* sama seperti opacity-30 pada kode awal */
+    }
+
+    /* Indikator (dots) */
+    .hero-dot {
+        position: relative;
+        height: 0.625rem;
+        width: 0.625rem;
+        border-radius: 9999px;
+        background: rgba(255, 255, 255, 0.5);
+        transition: width 0.3s ease, background-color 0.3s ease;
+    }
+
+    .hero-dot::before { /* area sentuh lebih besar di HP */
+        content: "";
+        position: absolute;
+        inset: -0.5rem -0.25rem;
+    }
+
+    .hero-dot[aria-current="true"] {
+        width: 2rem;
+        background: #facc15; /* yellow-400 */
+    }
+
+    .hero-dot:focus-visible,
+    .hero-arrow:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .hero-slide,
+        .hero-dot { transition: none; }
+    }
+</style>
+
+<section id="home"
+    class="relative h-[85vh] flex items-center justify-center overflow-hidden bg-slate-900"
+    aria-roledescription="carousel" aria-label="Galeri Yayasan Harmoni Abadi Sejati">
+
+    <!-- Gambar carousel -->
+    <div class="absolute inset-0 z-0">
+        <!-- Tambah / ganti gambar di sini. Dots akan dibuat otomatis. -->
+        <img src="img/img.jpg"  alt="" class="hero-slide is-active absolute inset-0 w-full h-full object-cover">
+        <img src="img/img2.jpg" alt="" loading="lazy" class="hero-slide absolute inset-0 w-full h-full object-cover">
+        <img src="img/img3.jpg" alt="" loading="lazy" class="hero-slide absolute inset-0 w-full h-full object-cover">
+
+        <!-- Gradient kuning dari bawah -->
+        <div class="absolute inset-0 z-10 pointer-events-none bg-gradient-to-t from-yellow-500/80 via-yellow-600/30 to-transparent"></div>
+    </div>
+
+    <!-- Konten -->
+    <div class="relative z-20 max-w-5xl mx-auto text-center px-4 space-y-6">
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-wider uppercase drop-shadow-lg">
+            YAYASAN HARMONI ABADI SEJATI
+        </h1>
+        <p class="text-lg sm:text-2xl text-gray-200 font-light max-w-2xl mx-auto leading-relaxed">
+            WADAH KEPEDULIAN, JEMBATAN PENGABDIAN, SEKALIGUS RUANG KOLABORASI UNTUK MENGHADIRKAN MANFAAT NYATA
+            BAGI MASYARAKAT.
+        </p>
+        <div class="pt-4 flex flex-wrap justify-center gap-4">
+            <a href="#tentang"
+                class="gold-gradient text-slate-900 px-8 py-3 rounded-xl font-bold shadow-lg hover:opacity-95 transition">
+                Kenali Kami Lebih Dekat
+            </a>
+            <a href="#kontak"
+                class="bg-white/10 backdrop-blur border border-white/30 text-white px-8 py-3 rounded-xl font-bold hover:bg-white/20 transition">
+                Hubungi Pengurus
+            </a>
+        </div>
+    </div>
+
+    <!-- Tombol sebelumnya / berikutnya (disembunyikan di HP, di HP pakai swipe) -->
+    <button type="button" id="hero-prev" aria-label="Gambar sebelumnya"
+        class="hero-arrow hidden sm:flex absolute left-4 top-1/2 -translate-y-1/2 z-30 h-11 w-11 items-center justify-center rounded-full bg-white/10 backdrop-blur border border-white/30 text-white hover:bg-white/20 transition">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg>
+    </button>
+    <button type="button" id="hero-next" aria-label="Gambar berikutnya"
+        class="hero-arrow hidden sm:flex absolute right-4 top-1/2 -translate-y-1/2 z-30 h-11 w-11 items-center justify-center rounded-full bg-white/10 backdrop-blur border border-white/30 text-white hover:bg-white/20 transition">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+    </button>
+
+    <!-- Dots -->
+    <div id="hero-dots" class="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2"></div>
+</section>
+
+<script>
+    (function () {
+        const hero = document.getElementById('home');
+        const slides = hero.querySelectorAll('.hero-slide');
+        const dotsWrap = document.getElementById('hero-dots');
+        const INTERVAL = 5000; // ms, ubah sesuai kebutuhan
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        let current = 0;
+        let timer = null;
+
+        // Buat dots otomatis sesuai jumlah gambar
+        const dots = Array.from(slides, (_, i) => {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'hero-dot';
+            b.setAttribute('aria-label', 'Tampilkan gambar ' + (i + 1));
+            b.addEventListener('click', () => { goTo(i); start(); });
+            dotsWrap.appendChild(b);
+            return b;
+        });
+
+        function goTo(i) {
+            current = (i + slides.length) % slides.length;
+            slides.forEach((s, idx) => s.classList.toggle('is-active', idx === current));
+            dots.forEach((d, idx) => d.setAttribute('aria-current', idx === current ? 'true' : 'false'));
+        }
+
+        function stop() {
+            clearInterval(timer);
+            timer = null;
+        }
+
+        function start() {
+            stop();
+            if (reduceMotion || slides.length < 2) return;
+            timer = setInterval(() => goTo(current + 1), INTERVAL);
+        }
+
+        // Tombol panah
+        document.getElementById('hero-prev').addEventListener('click', () => { goTo(current - 1); start(); });
+        document.getElementById('hero-next').addEventListener('click', () => { goTo(current + 1); start(); });
+
+        // Jeda saat kursor / fokus ada di hero, atau tab tidak aktif
+        hero.addEventListener('mouseenter', stop);
+        hero.addEventListener('mouseleave', start);
+        hero.addEventListener('focusin', stop);
+        hero.addEventListener('focusout', start);
+        document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+
+        // Swipe di layar sentuh
+        let touchX = null;
+        hero.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; stop(); }, { passive: true });
+        hero.addEventListener('touchend', e => {
+            if (touchX !== null) {
+                const dx = e.changedTouches[0].clientX - touchX;
+                if (Math.abs(dx) > 50) goTo(current + (dx < 0 ? 1 : -1));
+            }
+            touchX = null;
+            start();
+        }, { passive: true });
+
+        goTo(0);
+        start();
+    })();
+</script>

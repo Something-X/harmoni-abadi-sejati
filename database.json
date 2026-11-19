@@ -1,0 +1,17 @@
+{
+    "artikels": [
+        {
+            "id": 1,
+            "judul": "Pelantikan Pengurus dan Pengawas Yayasan Harmoni Abadi Sejati",
+            "tanggal": "05 Februari 2026",
+            "konten": "Acara pelantikan khidmat di Bima Restaurant Surabaya yang dihadiri oleh anggota Komisi D DPRD Kota Surabaya Dr. Imam Syafii, SH, MH dan Kadinsos Surabaya Mia Santi Dewi, SH, M.Si."
+        },
+        {
+            "id": 2,
+            "judul": "Dinsos Surabaya Terima 275 Kain Kafan dari Yayasan",
+            "tanggal": "Agustus 2026",
+            "konten": "Wujud nyata kepedulian sosial kemasyarakatan dalam penyerahan bantuan kain kafan untuk jenazah warga tanpa keluarga."
+        }
+    ],
+    "pesan": []
+}

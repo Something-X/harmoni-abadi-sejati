@@ -1,0 +1,209 @@
+<!-- ============ ARTIKEL / WARTA (CAROUSEL) ============
+     Ganti seluruh section artikel yang lama dengan blok ini
+     (CSS + HTML + JS sudah jadi satu, tidak butuh file lain). -->
+
+<style>
+    /* Latar section: cahaya emas lembut */
+    .warta-bg {
+        background:
+            radial-gradient(60rem 28rem at 10% 0%, rgba(243, 217, 139, .5), transparent 65%),
+            radial-gradient(50rem 28rem at 100% 100%, rgba(212, 175, 55, .2), transparent 65%),
+            #FFF8E1;
+    }
+    .warta-track {
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+    }
+    .warta-track::-webkit-scrollbar { display: none; }
+    .warta-slide {
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+    }
+    /* Bingkai gradasi emas + bayangan hangat */
+    .warta-ring {
+        background: linear-gradient(135deg, #F3D98B 0%, #D4AF37 50%, #F3D98B 100%);
+        box-shadow: 0 25px 50px -20px rgba(143, 107, 16, .45);
+    }
+    /* Panel teks: ivory ke kuning pastel */
+    .warta-panel { background: linear-gradient(135deg, #FFFDF5 0%, #FFF3C6 100%); }
+    /* Foto menyatu ke panel teks (bawah di HP, kanan di layar lebar) + semburat emas */
+    .warta-shade {
+        background:
+            linear-gradient(135deg, rgba(212, 175, 55, .25), transparent 45%),
+            linear-gradient(to bottom, transparent 55%, #FFFDF5 100%);
+    }
+    @media (min-width: 768px) {
+        .warta-shade {
+            background:
+                linear-gradient(135deg, rgba(212, 175, 55, .25), transparent 45%),
+                linear-gradient(to right, transparent 55%, #FFFDF5 100%);
+        }
+    }
+    .warta-btn { background: linear-gradient(135deg, #F3D98B 0%, #D4AF37 55%, #B8921F 100%); }
+    .warta-track:focus-visible,
+    .warta-btn:focus-visible,
+    .warta-dot:focus-visible {
+        outline: 2px solid #8F6B10;
+        outline-offset: 3px;
+    }
+    .warta-dot {
+        position: relative;
+        height: 0.625rem;
+        width: 0.625rem;
+        border-radius: 9999px;
+        background: #E0C878;
+        transition: width 0.3s ease, background-color 0.3s ease;
+    }
+    .warta-dot::before { content: ""; position: absolute; inset: -0.5rem -0.25rem; }
+    .warta-dot[aria-current="true"] { width: 2.5rem; background: linear-gradient(90deg, #D4AF37, #8F6B10); }
+    @media (prefers-reduced-motion: reduce) { .warta-dot { transition: none; } }
+</style>
+
+<section id="artikel" class="warta-bg py-20">
+    <div class="w-full px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-gold-deep font-bold uppercase tracking-widest text-xs">WARTA</span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-cocoa mt-2">Artikel Kegiatan Internal</h2>
+            <div class="w-20 h-1 bg-gold mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <div class="w-full" role="region" aria-roledescription="carousel" aria-label="Warta kegiatan yayasan">
+            <!-- Slide dibuat otomatis oleh JavaScript di bawah -->
+            <div id="warta-track" tabindex="0" class="warta-track flex overflow-x-auto"></div>
+
+            <div id="warta-controls" class="mt-6 flex items-center justify-center gap-6">
+                <button type="button" id="warta-prev" aria-label="Berita sebelumnya"
+                    class="warta-btn h-12 w-12 flex items-center justify-center rounded-full text-cocoa shadow-lg hover:brightness-105 transition">
+                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg>
+                </button>
+                <div id="warta-dots" class="flex items-center gap-2"></div>
+                <button type="button" id="warta-next" aria-label="Berita berikutnya"
+                    class="warta-btn h-12 w-12 flex items-center justify-center rounded-full text-cocoa shadow-lg hover:brightness-105 transition">
+                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    (function () {
+        // Tambah kegiatan baru cukup dengan menambah satu objek di daftar ini.
+        const WARTA = [
+            {
+                judul: "Pengurus Yayasan Harmoni Abadi Sejati Dilantik, Siap Jalankan Program Pendidikan dan Kesehatan",
+                tanggal: "5 Februari 2026",
+                ringkas: "Yayasan resmi dideklarasikan, dan pengurus serta pengawasnya dilantik di Bima Restaurant, Surabaya, dengan fokus membantu pemerintah di bidang pendidikan dan kesehatan.",
+                url: "https://www.tvonenews.com/berita/nasional/413350-pengurus-yayasan-harmoni-abadi-sejati-dilantik-siap-jalankan-program-pendidikan-dan-kesehatan",
+                gambar: "https://thumbs.tvonenews.com/thumbnail/2026/02/05/6984ab0edccf2-yayasan-harmoni-abadi-sejati_1265_711.jpg",
+                gambarCadangan: "https://thumbs.tvonenews.com/thumbnail/2026/02/05/6984ab0edccf2-yayasan-harmoni-abadi-sejati_488_274.jpg"
+            },
+            {
+                judul: "Peduli Warga Tanpa Keluarga, 275 Kain Kafan Diserahkan ke Dinsos Surabaya",
+                tanggal: "8 Agustus 2026",
+                ringkas: "Menjelang HUT ke-81 RI, yayasan menyerahkan 275 lembar kain kafan kepada Dinas Sosial Kota Surabaya untuk pemulasaraan jenazah warga binaan yang tidak memiliki keluarga.",
+                url: "https://www.tvonenews.com/daerah/jatim/458586-dinsos-surabaya-terima-275-kain-kafan-untuk-jenazah-warga-tanpa-keluarga",
+                gambar: "https://thumbs.tvonenews.com/thumbnail/2026/08/08/6a77197d29e60-275-kain-kafan-disalurkan-untuk-warga-kurang-mampu-di-surabaya_1265_711.jpg",
+                gambarCadangan: "https://thumbs.tvonenews.com/thumbnail/2026/08/08/6a77197d29e60-275-kain-kafan-disalurkan-untuk-warga-kurang-mampu-di-surabaya_488_274.jpg"
+            }
+        ];
+
+        const track = document.getElementById('warta-track');
+        const dotsWrap = document.getElementById('warta-dots');
+        const prev = document.getElementById('warta-prev');
+        const next = document.getElementById('warta-next');
+        const n = WARTA.length;
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let current = 0;
+
+        track.innerHTML = WARTA.map((a, i) => `
+            <article class="warta-slide shrink-0 basis-full w-full px-2 py-4" role="group"
+                aria-roledescription="slide" aria-label="${i + 1} dari ${n}">
+                <div class="warta-ring rounded-[1.75rem] p-[2px] h-full">
+                    <div class="bg-ivory rounded-[1.65rem] overflow-hidden grid grid-cols-1 md:grid-cols-[1.2fr_1fr] h-full">
+                        <a href="${a.url}" target="_blank" rel="noopener noreferrer"
+                            aria-label="Buka berita di tvOneNews: ${a.judul}"
+                            class="relative block aspect-[4/3] md:aspect-auto md:min-h-[28rem] lg:min-h-[34rem] bg-champagne">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-newspaper text-6xl text-gold-deep/40" aria-hidden="true"></i>
+                            </div>
+                            <img src="${a.gambar}" data-fallback="${a.gambarCadangan}" alt="" loading="lazy"
+                                referrerpolicy="no-referrer" class="absolute inset-0 w-full h-full object-cover">
+                            <div class="warta-shade absolute inset-0 pointer-events-none"></div>
+                            <span class="absolute top-4 left-4 bg-ivory/75 backdrop-blur text-cocoa text-sm font-bold px-4 py-1.5 rounded-full shadow">Kegiatan ${i + 1}</span>
+                        </a>
+                        <div class="warta-panel p-6 sm:p-10 lg:p-14 flex flex-col justify-center">
+                            <p class="text-gold-deep font-semibold text-sm flex items-center gap-2">
+                                <i class="far fa-calendar" aria-hidden="true"></i> ${a.tanggal}
+                            </p>
+                            <h3 class="font-extrabold text-cocoa text-2xl sm:text-3xl lg:text-4xl mt-4 leading-tight">${a.judul}</h3>
+                            <p class="text-cocoa-soft text-base lg:text-lg mt-5 leading-relaxed">${a.ringkas}</p>
+                            <div class="pt-8">
+                                <a href="${a.url}" target="_blank" rel="noopener noreferrer"
+                                    class="gold-gradient inline-flex items-center gap-2 text-cocoa font-bold text-base px-7 py-3.5 rounded-xl shadow-lg hover:brightness-105 transition">
+                                    Baca di tvOneNews <i class="fas fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>`).join('');
+
+        // Jika thumbnail gagal dimuat: coba ukuran kecil, lalu tampilkan ikon saja
+        track.querySelectorAll('img').forEach(img => {
+            img.addEventListener('error', () => {
+                if (img.dataset.fallback && !img.dataset.tried) {
+                    img.dataset.tried = '1';
+                    img.src = img.dataset.fallback;
+                } else {
+                    img.remove();
+                }
+            });
+        });
+
+        // Dots
+        const dots = WARTA.map((_, i) => {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'warta-dot';
+            b.setAttribute('aria-label', 'Tampilkan berita ' + (i + 1));
+            b.addEventListener('click', () => goTo(i));
+            dotsWrap.appendChild(b);
+            return b;
+        });
+
+        function goTo(i) {
+            const target = (i + n) % n;
+            track.scrollTo({ left: target * track.clientWidth, behavior: reduceMotion ? 'auto' : 'smooth' });
+        }
+
+        function update() {
+            current = Math.max(0, Math.min(n - 1, Math.round(track.scrollLeft / track.clientWidth)));
+            dots.forEach((d, i) => d.setAttribute('aria-current', i === current ? 'true' : 'false'));
+        }
+
+        let ticking = false;
+        track.addEventListener('scroll', () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => { update(); ticking = false; });
+        }, { passive: true });
+
+        prev.addEventListener('click', () => goTo(current - 1));
+        next.addEventListener('click', () => goTo(current + 1));
+        track.addEventListener('keydown', e => {
+            if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+            if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+        });
+
+        // Jaga posisi slide saat ukuran layar berubah
+        window.addEventListener('resize', () => { track.scrollLeft = current * track.clientWidth; });
+
+        // Sembunyikan kontrol jika hanya ada satu berita
+        if (n < 2) document.getElementById('warta-controls').classList.add('hidden');
+
+        update();
+    })();
+</script>
